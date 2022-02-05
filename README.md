@@ -8,7 +8,7 @@ This repo:
 * (coming soon...) benchmarks a number of data-free model compression methods
 
 <p align = "center">
-<img src="./assets/intro.png" style="width:100%">
+<img src="./assets/intro.png" style="width:90%">
 </p>
 <p align = "center">
 Our Method Is Denoted as "Fast-X"
