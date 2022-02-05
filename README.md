@@ -119,26 +119,32 @@ If you found this work useful for your research, please cite our paper:
 Chen, H., Wang, Y., Xu, C., Yang, Z., Liu, C., Shi, B., ... & Tian, Q. (2019). 
 Data-free learning of student networks. 
 In Proceedings of the IEEE/CVF International Conference on Computer Vision, 3514-3522.  
+
 <a id="2">[2]</a>
 Chen, H., Guo, T., Xu, C., Li, W., Xu, C., Xu, C., & Wang, Y. (2021). 
 Learning Student Networks in the Wild. 
 In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 6428-6437.  
+
 <a id="3">[3]</a>
 Choi, Y., Choi, J., El-Khamy, M., & Lee, J. (2020). 
 Data-free network quantization with adversarial knowledge distillation. 
 In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops, 710-711.  
+
 <a id="4">[4]</a>
 Fang, G., Song, J., Wang, X., Shen, C., Wang, X., & Song, M. (2021). 
 Contrastive Model Inversion for Data-Free Knowledge Distillation. 
 arXiv preprint arXiv:2105.08584.  
+
 <a id="5">[5]</a>
 Luo, L., Sandler, M., Lin, Z., Zhmoginov, A., & Howard, A. (2020). 
 Large-scale generative data-free distillation. 
 arXiv preprint arXiv:2012.05578.  
+
 <a id="6">[6]</a>
 Micaelli, P., & Storkey, A. J. (2019). 
 Zero-shot knowledge transfer via adversarial belief matching. 
 Advances in Neural Information Processing Systems, 32.  
+
 <a id="7">[7]</a>
 Yin, H., Molchanov, P., Alvarez, J. M., Li, Z., Mallya, A., Hoiem, D., ... & Kautz, J. (2020). 
 Dreaming to distill: Data-free knowledge transfer via deepinversion. 
