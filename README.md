@@ -1,21 +1,22 @@
 # Fast-Datafree
 
-This repo:
-
-* implements the efficient data-free distillation algorithm from the AAAI-22 paper 
+This repo implements the efficient data-free distillation algorithm from the AAAI-22 paper 
 ["Up to 100x Faster Data-free Knowledge Distillation"](https://arxiv.org/pdf/2112.06253.pdf)
 
-* (coming soon...) benchmarks a number of data-free model compression methods
 
 <p align = "center">
-<img src="./assets/intro.png" style="width:90%">
+<img src="./assets/framework.png" style="width:90%">
 </p>
 <p align = "center">
-Our Method Is Denoted as "Fast-X"
 </p>
-
 
 ## Results
+
+<p align = "center">
+<img src="./assets/intro.png" style="width:70%">
+</p>
+<p align = "center">
+</p>
 
 ### CIFAR-10
 | Method   | ResNet-34 <br> ResNet-18 | VGG-11 <br> ResNet-18 | WRN40-2 <br> WRN16-1 | WRN40-2 <br> WRN40-1 | WRN40-2 <br> WRN16-2 | Speed-up |
