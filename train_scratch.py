@@ -29,9 +29,9 @@ parser.add_argument('-b', '--batch-size', default=256, type=int,
                     help='mini-batch size (default: 256), this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
-parser.add_argument('--lr', '--learning-rate', default=0.2, type=float,
+parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
-parser.add_argument('--lr_decay_milestones', default="10,20,30,40", type=str,
+parser.add_argument('--lr_decay_milestones', default="120,150,180", type=str,
                     help='milestones for learning rate decay')
 parser.add_argument('--evaluate_only', action='store_true',
                     help='evaluate model on validation set')
