@@ -3,6 +3,9 @@
 This repo implements the efficient data-free distillation algorithm from the AAAI-22 paper 
 ["Up to 100x Faster Data-free Knowledge Distillation"](https://arxiv.org/pdf/2112.06253.pdf)
 
+## TODO
+* ImageNet 
+* Distributed training
 
 <p align = "center">
 <img src="./assets/framework.png" style="width:90%">
