@@ -4,3 +4,4 @@ from .contrastive import CMISynthesizer
 from .base import BaseSynthesis
 from .fast import FastSynthesizer
 from .fast_meta import FastMetaSynthesizer
+from .fast_meta_imagenet import FastMetaSynthesizerForImageNet

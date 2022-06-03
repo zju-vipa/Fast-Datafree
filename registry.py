@@ -111,52 +111,18 @@ def get_dataset(name: str, data_root: str='data', return_transform=False, split=
     elif name=='cifar10':
         num_classes = 10
         train_transform = T.Compose([
-            #T.Resize((224, 224), Image.BICUBIC),
             T.RandomCrop(32, padding=4),
             T.RandomHorizontalFlip(),
             T.ToTensor(),
             T.Normalize( **NORMALIZE_DICT[name] ),
         ])
         val_transform = T.Compose([
-            #T.Resize((224, 224), Image.BICUBIC),
             T.ToTensor(),
             T.Normalize( **NORMALIZE_DICT[name] ),
         ])
-        # data_root = os.path.join( data_root, 'torchdata' )
+        data_root = os.path.join( data_root, 'torchdata' )
         train_dst = datasets.CIFAR10(data_root, train=True, download=False, transform=train_transform)
         val_dst = datasets.CIFAR10(data_root, train=False, download=False, transform=val_transform)
-    elif name=='c10+p365':
-        num_classes = 10
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        val_transform = T.Compose([
-            #T.Resize((224, 224), Image.BICUBIC),
-            T.ToTensor(),
-            T.Normalize( **NORMALIZE_DICT[name] ),
-        ])
-        data_root = os.path.join( data_root, 'torchdata' ) 
-        train_dst_1 = datasets.CIFAR10(data_root, train=True, download=True, transform=train_transform)
-        val_dst_1 = datasets.CIFAR10(data_root, train=False, download=True, transform=val_transform)
-        
-        train_transform = T.Compose([
-            T.RandomCrop(32, padding=4),
-            T.RandomHorizontalFlip(),
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        val_transform = T.Compose([
-            T.ToTensor(),
-            T.Normalize(**NORMALIZE_DICT[name]),
-        ])
-        data_root = os.path.join( data_root, 'Places365_32x32' ) 
-        train_dst_2 = datasets.ImageFolder(os.path.join(data_root, 'train'), transform=train_transform)
-        val_dst_2 = datasets.ImageFolder(os.path.join(data_root, 'val'), transform=val_transform)
-        train_dst = torch.utils.data.ConcatDataset([train_dst_1, train_dst_2])
-        val_dst = torch.utils.data.ConcatDataset([val_dst_1, val_dst_2])
     elif name=='cifar100':
         num_classes = 100
         train_transform = T.Compose([

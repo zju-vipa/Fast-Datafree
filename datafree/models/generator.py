@@ -53,6 +53,67 @@ class Generator(nn.Module):
     #     self.conv_blocks[9].weight = torch.nn.Parameter(self.conv_blocks[9].weight[s3, :, :, :])
 
 
+class DeepGenerator(nn.Module):
+    def __init__(self, nz=100, ngf=64, img_size=224, nc=3):
+        super(DeepGenerator, self).__init__()
+        self.params = (nz, ngf, img_size, nc)
+        self.init_size = img_size // 32
+        self.l1 = nn.Sequential(nn.Linear(nz, ngf * self.init_size ** 2))
+
+        self.conv_blocks = nn.Sequential(
+            #nn.Conv2d(nz, ngf, 3, stride=1, padding=1, bias=False),
+            #nn.BatchNorm2d(ngf),
+            #nn.LeakyReLU(0.2, inplace=True),
+            # 7x7
+
+            #nn.Upsample(scale_factor=2),
+            nn.Conv2d(nz, 2*ngf, 3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(2*ngf),
+            nn.LeakyReLU(0.2, inplace=True),
+            # 14x14
+
+            nn.Upsample(scale_factor=2),
+            nn.Conv2d(2*ngf, 2*ngf, 3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(2*ngf),
+            nn.LeakyReLU(0.2, inplace=True),
+            # 28x28
+
+            nn.Upsample(scale_factor=2),
+            nn.Conv2d(2*ngf, ngf, 3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(ngf),
+            nn.LeakyReLU(0.2, inplace=True),
+            # 56x56
+
+            nn.Upsample(scale_factor=2),
+            nn.Conv2d(ngf, ngf, 3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(ngf),
+            nn.LeakyReLU(0.2, inplace=True),
+            # 112 x 112
+
+            nn.Upsample(scale_factor=2),
+            nn.Conv2d(ngf, ngf, 3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(ngf),
+            nn.LeakyReLU(0.2, inplace=True),
+            # 224 x 224
+
+            nn.Conv2d(ngf, nc, 3, stride=1, padding=1),
+            nn.Sigmoid(),  
+        )
+
+    def forward(self, z):
+        #out = self.l1(z)
+        #out = out.view(out.shape[0], -1, self.init_size, self.init_size) 
+        img = self.conv_blocks(z)
+        return img
+
+    # return a copy of its own
+    def clone(self, copy_params=True):
+        clone = DeepGenerator(self.params[0], self.params[1], self.params[2], self.params[3])
+        if copy_params:
+            clone.load_state_dict(self.state_dict())
+        return clone.cuda()
+
+        
 class DCGAN_Generator(nn.Module):
     """ Generator from DCGAN: https://arxiv.org/abs/1511.06434
     """

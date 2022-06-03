@@ -1,0 +1,519 @@
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: method: fast_meta
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: adv: 0.01
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: bn: 0.1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: oh: 0.1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: act: 0.0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: balance: 0.0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: save_dir: run/FastDFKD_50_adv_r18v2
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: cr: 1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: cr_T: 0.5
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: cmi_init: run/imagenet_reinit_reuse_onlyz_reinit
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: data_root: data
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: teacher: resnet50_imagenet
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: student: resnet18_imagenet
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: dataset: imagenet
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr: 0.01
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_decay_milestones: 120,150,180
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: meta_lr_scale: 1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_g: 0.0002
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_z: 0.01
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_g_meta: 0.0001
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_z_meta: 0.005
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: T: 5.0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: epochs: 400
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: g_steps: 50
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: kd_steps: 100
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: ep_steps: 1000
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: start_kd: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: reinit: 50
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: rand_label: 1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: reset_l0: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: reset_bn: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: apply_kd: 1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: bn_mmt: 0.9
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_diff: 1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: is_maml: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: resume: 
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: evaluate_only: False
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: batch_size: 100
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: synthesis_batch_size: None
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: gpu: 1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: world_size: -1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: rank: -1
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: dist_url: tcp://224.66.41.62:23456
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: dist_backend: nccl
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: multiprocessing_distributed: False
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: fp16: False
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: seed: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: log_tag: -FastDFKD_50_adv_r18v2
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: workers: 4
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: start_epoch: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: momentum: 0.9
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: weight_decay: 0.0001
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: print_freq: 0
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: pretrained: False
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: distributed: False
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: ngpus_per_node: 8
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: autocast: <function dummy_ctx at 0x7fa024b84b80>
+[09/05 10:54:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: logger: <Logger imagenet-resnet50_imagenet-resnet18_imagenet (DEBUG)>
+[09/05 11:01:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=0 Acc@1=0.3260 Acc@5=1.2980 Loss=6.7348 Lr=0.0100 Time=0.0515
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: method: fast_meta
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: adv: 1.0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: bn: 0.1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: oh: 0.1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: act: 0.0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: balance: 0.0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: save_dir: run/FastDFKD_50_adv_r18v2
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: cr: 1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: cr_T: 0.5
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: cmi_init: run/imagenet_reinit_reuse_onlyz_reinit
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: data_root: data
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: teacher: resnet50_imagenet
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: student: resnet18_imagenet
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: dataset: imagenet
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr: 0.1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_decay_milestones: 120,150,180
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: meta_lr_scale: 1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_g: 0.0002
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_z: 0.01
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_g_meta: 0.0001
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_z_meta: 0.005
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: T: 5.0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: epochs: 400
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: g_steps: 50
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: kd_steps: 100
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: ep_steps: 1000
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: start_kd: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: reinit: 50
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: rand_label: 1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: reset_l0: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: reset_bn: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: apply_kd: 1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: bn_mmt: 0.9
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: lr_diff: 1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: is_maml: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: resume: 
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: evaluate_only: False
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: batch_size: 100
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: synthesis_batch_size: None
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: gpu: 1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: world_size: -1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: rank: -1
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: dist_url: tcp://224.66.41.62:23456
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: dist_backend: nccl
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: multiprocessing_distributed: False
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: fp16: False
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: seed: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: log_tag: -FastDFKD_50_adv_r18v2
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: workers: 4
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: start_epoch: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: momentum: 0.9
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: weight_decay: 0.0001
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: print_freq: 0
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: pretrained: False
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: distributed: False
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: ngpus_per_node: 8
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: autocast: <function dummy_ctx at 0x7f0cad7c5b80>
+[09/05 11:05:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: logger: <Logger imagenet-resnet50_imagenet-resnet18_imagenet (DEBUG)>
+[09/05 11:13:00] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=0 Acc@1=0.8220 Acc@5=3.3300 Loss=6.4562 Lr=0.1000 Time=0.0512
+[09/05 11:19:57] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=1 Acc@1=1.0980 Acc@5=4.5720 Loss=6.2919 Lr=0.1000 Time=0.1021
+[09/05 11:26:53] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=2 Acc@1=1.7500 Acc@5=6.8220 Loss=6.0824 Lr=0.1000 Time=0.1531
+[09/05 11:33:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=3 Acc@1=2.1060 Acc@5=8.0560 Loss=6.0225 Lr=0.1000 Time=0.2040
+[09/05 11:40:44] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=4 Acc@1=2.2240 Acc@5=8.0100 Loss=5.9689 Lr=0.1000 Time=0.2549
+[09/05 11:47:43] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=5 Acc@1=3.4500 Acc@5=11.9060 Loss=5.6829 Lr=0.1000 Time=0.3059
+[09/05 11:54:39] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=6 Acc@1=3.1060 Acc@5=11.4740 Loss=5.7018 Lr=0.0999 Time=0.3569
+[09/05 12:01:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=7 Acc@1=4.9400 Acc@5=16.6240 Loss=5.4647 Lr=0.0999 Time=0.4077
+[09/05 12:08:29] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=8 Acc@1=4.4280 Acc@5=15.1520 Loss=5.5357 Lr=0.0999 Time=0.4586
+[09/05 12:15:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=9 Acc@1=5.8360 Acc@5=18.8340 Loss=5.2858 Lr=0.0999 Time=0.5096
+[09/05 12:22:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=10 Acc@1=5.8680 Acc@5=19.1260 Loss=5.2837 Lr=0.0998 Time=0.5605
+[09/05 12:29:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=11 Acc@1=7.2040 Acc@5=21.7720 Loss=5.1499 Lr=0.0998 Time=0.6113
+[09/05 12:36:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=12 Acc@1=8.1820 Acc@5=24.6620 Loss=5.0140 Lr=0.0998 Time=0.6624
+[09/05 12:43:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=13 Acc@1=8.9020 Acc@5=26.2460 Loss=4.9247 Lr=0.0997 Time=0.7133
+[09/05 12:50:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=14 Acc@1=9.1380 Acc@5=26.3660 Loss=4.8774 Lr=0.0997 Time=0.7642
+[09/05 12:56:59] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=15 Acc@1=11.2260 Acc@5=30.8440 Loss=4.7221 Lr=0.0997 Time=0.8151
+[09/05 13:03:54] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=16 Acc@1=10.4580 Acc@5=29.4980 Loss=4.7615 Lr=0.0996 Time=0.8661
+[09/05 13:10:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=17 Acc@1=9.4480 Acc@5=27.4120 Loss=4.8408 Lr=0.0996 Time=0.9170
+[09/05 13:17:44] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=18 Acc@1=11.3960 Acc@5=30.9740 Loss=4.6406 Lr=0.0995 Time=0.9680
+[09/05 13:24:38] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=19 Acc@1=11.3020 Acc@5=30.6080 Loss=4.6867 Lr=0.0994 Time=1.0189
+[09/05 13:31:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=20 Acc@1=12.2300 Acc@5=32.4380 Loss=4.6067 Lr=0.0994 Time=1.0698
+[09/05 13:38:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=21 Acc@1=12.6520 Acc@5=33.3660 Loss=4.5936 Lr=0.0993 Time=1.1208
+[09/05 13:45:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=22 Acc@1=14.6580 Acc@5=36.9900 Loss=4.3856 Lr=0.0993 Time=1.1717
+[09/05 13:52:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=23 Acc@1=15.5580 Acc@5=38.6640 Loss=4.3375 Lr=0.0992 Time=1.2226
+[09/05 13:59:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=24 Acc@1=12.9600 Acc@5=33.8140 Loss=4.5670 Lr=0.0991 Time=1.2735
+[09/05 14:06:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=25 Acc@1=16.1200 Acc@5=39.7080 Loss=4.2064 Lr=0.0990 Time=1.3244
+[09/05 14:13:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=26 Acc@1=14.4380 Acc@5=36.6640 Loss=4.4477 Lr=0.0990 Time=1.3753
+[09/05 14:20:04] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=27 Acc@1=16.0580 Acc@5=38.9760 Loss=4.3466 Lr=0.0989 Time=1.4262
+[09/05 14:27:00] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=28 Acc@1=16.1000 Acc@5=39.4740 Loss=4.2842 Lr=0.0988 Time=1.4772
+[09/05 14:33:55] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=29 Acc@1=16.8640 Acc@5=39.9340 Loss=4.2710 Lr=0.0987 Time=1.5281
+[09/05 14:40:54] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=30 Acc@1=18.4840 Acc@5=43.4560 Loss=4.0877 Lr=0.0986 Time=1.5790
+[09/05 14:47:51] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=31 Acc@1=17.9020 Acc@5=41.9040 Loss=4.1636 Lr=0.0985 Time=1.6299
+[09/05 14:54:47] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=32 Acc@1=18.0360 Acc@5=42.3740 Loss=4.0761 Lr=0.0984 Time=1.6808
+[09/05 15:01:43] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=33 Acc@1=18.0980 Acc@5=42.4360 Loss=4.1112 Lr=0.0983 Time=1.7317
+[09/05 15:08:39] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=34 Acc@1=20.5420 Acc@5=46.1520 Loss=3.9232 Lr=0.0982 Time=1.7826
+[09/05 15:15:35] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=35 Acc@1=18.6520 Acc@5=42.9840 Loss=4.0711 Lr=0.0981 Time=1.8334
+[09/05 15:22:31] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=36 Acc@1=18.7920 Acc@5=43.3920 Loss=4.0468 Lr=0.0980 Time=1.8843
+[09/05 15:29:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=37 Acc@1=19.3340 Acc@5=44.9480 Loss=3.9771 Lr=0.0979 Time=1.9352
+[09/05 15:36:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=38 Acc@1=21.0920 Acc@5=46.6500 Loss=3.8965 Lr=0.0978 Time=1.9860
+[09/05 15:43:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=39 Acc@1=20.9580 Acc@5=47.1260 Loss=3.8719 Lr=0.0977 Time=2.0370
+[09/05 15:50:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=40 Acc@1=21.7320 Acc@5=48.1860 Loss=3.8387 Lr=0.0976 Time=2.0879
+[09/05 15:57:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=41 Acc@1=21.5040 Acc@5=47.6120 Loss=3.8853 Lr=0.0974 Time=2.1388
+[09/05 16:04:13] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=42 Acc@1=21.1060 Acc@5=46.4820 Loss=3.9126 Lr=0.0973 Time=2.1897
+[09/05 16:11:11] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=43 Acc@1=21.9200 Acc@5=48.0200 Loss=3.8146 Lr=0.0972 Time=2.2406
+[09/05 16:18:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=44 Acc@1=19.7900 Acc@5=44.8100 Loss=4.0030 Lr=0.0970 Time=2.2915
+[09/05 16:25:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=45 Acc@1=23.0740 Acc@5=49.6660 Loss=3.7636 Lr=0.0969 Time=2.3424
+[09/05 16:32:01] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=46 Acc@1=21.0880 Acc@5=46.7880 Loss=3.8807 Lr=0.0968 Time=2.3933
+[09/05 16:38:58] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=47 Acc@1=21.6640 Acc@5=46.5220 Loss=3.8673 Lr=0.0966 Time=2.4442
+[09/05 16:45:55] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=48 Acc@1=23.2220 Acc@5=50.1380 Loss=3.7163 Lr=0.0965 Time=2.4950
+[09/05 16:52:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=49 Acc@1=21.3700 Acc@5=47.1040 Loss=3.8458 Lr=0.0963 Time=2.5459
+[09/05 16:59:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=50 Acc@1=22.4520 Acc@5=49.1780 Loss=3.8020 Lr=0.0962 Time=2.5968
+[09/05 17:06:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=51 Acc@1=21.0880 Acc@5=46.8840 Loss=3.8676 Lr=0.0960 Time=2.6477
+[09/05 17:13:42] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=52 Acc@1=21.7960 Acc@5=47.2140 Loss=3.8585 Lr=0.0959 Time=2.6986
+[09/05 17:20:40] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=53 Acc@1=22.0840 Acc@5=48.3560 Loss=3.8167 Lr=0.0957 Time=2.7495
+[09/05 17:27:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=54 Acc@1=23.9440 Acc@5=50.6160 Loss=3.7147 Lr=0.0956 Time=2.8004
+[09/05 17:34:37] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=55 Acc@1=24.5340 Acc@5=51.5600 Loss=3.6547 Lr=0.0954 Time=2.8513
+[09/05 17:41:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=56 Acc@1=21.3100 Acc@5=46.3080 Loss=3.8982 Lr=0.0952 Time=2.9022
+[09/05 17:48:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=57 Acc@1=23.8580 Acc@5=50.8500 Loss=3.6834 Lr=0.0951 Time=2.9531
+[09/05 17:55:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=58 Acc@1=24.2360 Acc@5=51.2480 Loss=3.6403 Lr=0.0949 Time=3.0040
+[09/05 18:02:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=59 Acc@1=24.5940 Acc@5=51.6500 Loss=3.6446 Lr=0.0947 Time=3.0549
+[09/05 18:09:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=60 Acc@1=23.4560 Acc@5=50.1560 Loss=3.7012 Lr=0.0946 Time=3.1058
+[09/05 18:16:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=61 Acc@1=23.3680 Acc@5=49.1420 Loss=3.8042 Lr=0.0944 Time=3.1567
+[09/05 18:23:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=62 Acc@1=22.8160 Acc@5=49.5880 Loss=3.7507 Lr=0.0942 Time=3.2076
+[09/05 18:30:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=63 Acc@1=26.0020 Acc@5=53.3940 Loss=3.6080 Lr=0.0940 Time=3.2585
+[09/05 18:37:11] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=64 Acc@1=23.8380 Acc@5=51.1020 Loss=3.6477 Lr=0.0938 Time=3.3094
+[09/05 18:44:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=65 Acc@1=22.9700 Acc@5=49.1500 Loss=3.7791 Lr=0.0936 Time=3.3603
+[09/05 18:51:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=66 Acc@1=23.5160 Acc@5=49.8340 Loss=3.7500 Lr=0.0934 Time=3.4112
+[09/05 18:58:02] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=67 Acc@1=23.5520 Acc@5=50.6740 Loss=3.7076 Lr=0.0932 Time=3.4621
+[09/05 19:04:58] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=68 Acc@1=25.8880 Acc@5=52.8140 Loss=3.6105 Lr=0.0930 Time=3.5129
+[09/05 19:11:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=69 Acc@1=24.2400 Acc@5=50.7220 Loss=3.6744 Lr=0.0928 Time=3.5639
+[09/05 19:18:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=70 Acc@1=26.3920 Acc@5=53.7520 Loss=3.5668 Lr=0.0926 Time=3.6147
+[09/05 19:25:51] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=71 Acc@1=26.2380 Acc@5=53.5080 Loss=3.5358 Lr=0.0924 Time=3.6656
+[09/05 19:32:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=72 Acc@1=25.3160 Acc@5=52.3180 Loss=3.6382 Lr=0.0922 Time=3.7165
+[09/05 19:39:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=73 Acc@1=23.4180 Acc@5=49.9220 Loss=3.6991 Lr=0.0920 Time=3.7674
+[09/05 19:46:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=74 Acc@1=22.8340 Acc@5=49.5920 Loss=3.7194 Lr=0.0918 Time=3.8183
+[09/05 19:53:41] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=75 Acc@1=27.0640 Acc@5=55.2540 Loss=3.4514 Lr=0.0916 Time=3.8692
+[09/05 20:00:40] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=76 Acc@1=24.3780 Acc@5=51.2240 Loss=3.6321 Lr=0.0914 Time=3.9201
+[09/05 20:07:37] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=77 Acc@1=25.1180 Acc@5=52.1500 Loss=3.6318 Lr=0.0911 Time=3.9710
+[09/05 20:14:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=78 Acc@1=25.6600 Acc@5=52.5760 Loss=3.6169 Lr=0.0909 Time=4.0219
+[09/05 20:21:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=79 Acc@1=26.3240 Acc@5=53.6500 Loss=3.5267 Lr=0.0907 Time=4.0728
+[09/05 20:28:27] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=80 Acc@1=24.0640 Acc@5=50.3980 Loss=3.6854 Lr=0.0905 Time=4.1237
+[09/05 20:35:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=81 Acc@1=26.1800 Acc@5=53.2360 Loss=3.5278 Lr=0.0902 Time=4.1746
+[09/05 20:42:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=82 Acc@1=27.8540 Acc@5=55.6840 Loss=3.4267 Lr=0.0900 Time=4.2255
+[09/05 20:49:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=83 Acc@1=26.3520 Acc@5=53.6440 Loss=3.5083 Lr=0.0897 Time=4.2764
+[09/05 20:56:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=84 Acc@1=25.2460 Acc@5=52.6280 Loss=3.6431 Lr=0.0895 Time=4.3273
+[09/05 21:03:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=85 Acc@1=26.8400 Acc@5=54.7340 Loss=3.5460 Lr=0.0893 Time=4.3782
+[09/05 21:10:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=86 Acc@1=25.3720 Acc@5=53.1600 Loss=3.6123 Lr=0.0890 Time=4.4291
+[09/05 21:17:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=87 Acc@1=25.2140 Acc@5=51.9020 Loss=3.6106 Lr=0.0888 Time=4.4800
+[09/05 21:24:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=88 Acc@1=26.4600 Acc@5=53.5460 Loss=3.5233 Lr=0.0885 Time=4.5308
+[09/05 21:31:01] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=89 Acc@1=27.6600 Acc@5=55.1320 Loss=3.4502 Lr=0.0883 Time=4.5817
+[09/05 21:37:59] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=90 Acc@1=27.8080 Acc@5=55.8980 Loss=3.4501 Lr=0.0880 Time=4.6326
+[09/05 21:44:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=91 Acc@1=27.6400 Acc@5=55.5560 Loss=3.4432 Lr=0.0878 Time=4.6836
+[09/05 21:51:54] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=92 Acc@1=26.3520 Acc@5=54.2340 Loss=3.4983 Lr=0.0875 Time=4.7345
+[09/05 21:58:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=93 Acc@1=27.4360 Acc@5=55.4340 Loss=3.4624 Lr=0.0872 Time=4.7854
+[09/05 22:05:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=94 Acc@1=28.7340 Acc@5=56.6900 Loss=3.3899 Lr=0.0870 Time=4.8363
+[09/05 22:12:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=95 Acc@1=24.6300 Acc@5=51.5940 Loss=3.6682 Lr=0.0867 Time=4.8872
+[09/05 22:19:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=96 Acc@1=27.2280 Acc@5=54.8280 Loss=3.4781 Lr=0.0864 Time=4.9381
+[09/05 22:26:43] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=97 Acc@1=28.0240 Acc@5=56.5500 Loss=3.3763 Lr=0.0862 Time=4.9890
+[09/05 22:33:40] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=98 Acc@1=28.5080 Acc@5=56.8340 Loss=3.3645 Lr=0.0859 Time=5.0399
+[09/05 22:40:37] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=99 Acc@1=26.1680 Acc@5=53.8920 Loss=3.5555 Lr=0.0856 Time=5.0908
+[09/05 22:47:35] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=100 Acc@1=28.5920 Acc@5=56.8700 Loss=3.3883 Lr=0.0854 Time=5.1417
+[09/05 22:54:34] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=101 Acc@1=28.8460 Acc@5=56.7740 Loss=3.3857 Lr=0.0851 Time=5.1930
+[09/05 23:01:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=102 Acc@1=28.6300 Acc@5=56.3940 Loss=3.4011 Lr=0.0848 Time=5.2438
+[09/05 23:08:32] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=103 Acc@1=28.8480 Acc@5=57.1260 Loss=3.3637 Lr=0.0845 Time=5.2947
+[09/05 23:15:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=104 Acc@1=27.8960 Acc@5=55.8920 Loss=3.4247 Lr=0.0842 Time=5.3456
+[09/05 23:22:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=105 Acc@1=28.0140 Acc@5=56.4020 Loss=3.4127 Lr=0.0839 Time=5.3965
+[09/05 23:29:29] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=106 Acc@1=29.0420 Acc@5=57.2020 Loss=3.3630 Lr=0.0837 Time=5.4474
+[09/05 23:36:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=107 Acc@1=28.0400 Acc@5=56.0780 Loss=3.4338 Lr=0.0834 Time=5.4983
+[09/05 23:43:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=108 Acc@1=29.0660 Acc@5=57.2920 Loss=3.3636 Lr=0.0831 Time=5.5492
+[09/05 23:50:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=109 Acc@1=27.8460 Acc@5=55.0240 Loss=3.4597 Lr=0.0828 Time=5.6001
+[09/05 23:57:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=110 Acc@1=27.2720 Acc@5=54.2560 Loss=3.5488 Lr=0.0825 Time=5.6510
+[09/06 00:04:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=111 Acc@1=30.5080 Acc@5=58.9360 Loss=3.3118 Lr=0.0822 Time=5.7019
+[09/06 00:11:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=112 Acc@1=26.5240 Acc@5=53.5200 Loss=3.5765 Lr=0.0819 Time=5.7528
+[09/06 00:18:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=113 Acc@1=26.4720 Acc@5=53.4000 Loss=3.5841 Lr=0.0816 Time=5.8037
+[09/06 00:25:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=114 Acc@1=29.9160 Acc@5=57.9460 Loss=3.3197 Lr=0.0813 Time=5.8546
+[09/06 00:32:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=115 Acc@1=26.7240 Acc@5=54.6920 Loss=3.4963 Lr=0.0810 Time=5.9055
+[09/06 00:39:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=116 Acc@1=28.8640 Acc@5=56.3640 Loss=3.4003 Lr=0.0806 Time=5.9564
+[09/06 00:46:06] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=117 Acc@1=27.4460 Acc@5=54.8040 Loss=3.4706 Lr=0.0803 Time=6.0073
+[09/06 00:53:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=118 Acc@1=29.0780 Acc@5=57.0380 Loss=3.3809 Lr=0.0800 Time=6.0582
+[09/06 01:00:02] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=119 Acc@1=31.4760 Acc@5=60.5140 Loss=3.1875 Lr=0.0797 Time=6.1091
+[09/06 01:07:02] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=120 Acc@1=29.1560 Acc@5=57.8040 Loss=3.3331 Lr=0.0794 Time=6.1601
+[09/06 01:13:59] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=121 Acc@1=30.4340 Acc@5=59.0780 Loss=3.2446 Lr=0.0791 Time=6.2109
+[09/06 01:20:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=122 Acc@1=30.3400 Acc@5=58.8880 Loss=3.3235 Lr=0.0788 Time=6.2619
+[09/06 01:27:53] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=123 Acc@1=29.5520 Acc@5=57.7980 Loss=3.3212 Lr=0.0784 Time=6.3128
+[09/06 01:34:50] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=124 Acc@1=28.3600 Acc@5=56.1860 Loss=3.4062 Lr=0.0781 Time=6.3637
+[09/06 01:41:46] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=125 Acc@1=29.0200 Acc@5=56.3460 Loss=3.4154 Lr=0.0778 Time=6.4146
+[09/06 01:48:42] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=126 Acc@1=28.6880 Acc@5=57.0940 Loss=3.3251 Lr=0.0775 Time=6.4655
+[09/06 01:55:42] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=127 Acc@1=31.0380 Acc@5=59.5420 Loss=3.2807 Lr=0.0771 Time=6.5165
+[09/06 02:02:40] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=128 Acc@1=30.9880 Acc@5=59.0000 Loss=3.2535 Lr=0.0768 Time=6.5674
+[09/06 02:09:39] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=129 Acc@1=30.4840 Acc@5=58.8820 Loss=3.2998 Lr=0.0765 Time=6.6183
+[09/06 02:16:38] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=130 Acc@1=29.9420 Acc@5=58.4380 Loss=3.3111 Lr=0.0761 Time=6.6692
+[09/06 02:23:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=131 Acc@1=30.9580 Acc@5=59.2280 Loss=3.2492 Lr=0.0758 Time=6.7201
+[09/06 02:30:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=132 Acc@1=29.6260 Acc@5=57.6540 Loss=3.3278 Lr=0.0755 Time=6.7710
+[09/06 02:37:35] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=133 Acc@1=29.6380 Acc@5=58.0580 Loss=3.3734 Lr=0.0751 Time=6.8219
+[09/06 02:44:31] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=134 Acc@1=26.0340 Acc@5=52.2880 Loss=3.6260 Lr=0.0748 Time=6.8728
+[09/06 02:51:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=135 Acc@1=30.9420 Acc@5=58.8840 Loss=3.2994 Lr=0.0744 Time=6.9237
+[09/06 02:58:29] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=136 Acc@1=30.6380 Acc@5=58.8520 Loss=3.2603 Lr=0.0741 Time=6.9746
+[09/06 03:05:27] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=137 Acc@1=31.1460 Acc@5=59.8340 Loss=3.2328 Lr=0.0737 Time=7.0255
+[09/06 03:12:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=138 Acc@1=29.7700 Acc@5=58.2240 Loss=3.2627 Lr=0.0734 Time=7.0764
+[09/06 03:19:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=139 Acc@1=31.1740 Acc@5=59.8460 Loss=3.2140 Lr=0.0730 Time=7.1274
+[09/06 03:26:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=140 Acc@1=30.8300 Acc@5=59.0960 Loss=3.2731 Lr=0.0727 Time=7.1783
+[09/06 03:33:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=141 Acc@1=31.4000 Acc@5=59.9520 Loss=3.2528 Lr=0.0723 Time=7.2292
+[09/06 03:40:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=142 Acc@1=31.9440 Acc@5=60.1940 Loss=3.1938 Lr=0.0720 Time=7.2801
+[09/06 03:47:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=143 Acc@1=31.9920 Acc@5=60.3780 Loss=3.1990 Lr=0.0716 Time=7.3310
+[09/06 03:54:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=144 Acc@1=29.0840 Acc@5=56.9500 Loss=3.3715 Lr=0.0713 Time=7.3820
+[09/06 04:01:13] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=145 Acc@1=30.1340 Acc@5=58.7420 Loss=3.2493 Lr=0.0709 Time=7.4329
+[09/06 04:08:11] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=146 Acc@1=31.8140 Acc@5=60.5120 Loss=3.2238 Lr=0.0706 Time=7.4838
+[09/06 04:15:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=147 Acc@1=31.7380 Acc@5=59.8760 Loss=3.2830 Lr=0.0702 Time=7.5350
+[09/06 04:22:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=148 Acc@1=31.0700 Acc@5=59.3320 Loss=3.2384 Lr=0.0699 Time=7.5859
+[09/06 04:29:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=149 Acc@1=30.2780 Acc@5=58.5240 Loss=3.2952 Lr=0.0695 Time=7.6368
+[09/06 04:36:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=150 Acc@1=30.7260 Acc@5=58.8720 Loss=3.2548 Lr=0.0691 Time=7.6877
+[09/06 04:43:04] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=151 Acc@1=29.8980 Acc@5=58.2740 Loss=3.2684 Lr=0.0688 Time=7.7385
+[09/06 04:50:06] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=152 Acc@1=31.0840 Acc@5=59.0540 Loss=3.2295 Lr=0.0684 Time=7.7894
+[09/06 04:57:06] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=153 Acc@1=33.8080 Acc@5=62.5500 Loss=3.0954 Lr=0.0680 Time=7.8404
+[09/06 05:04:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=154 Acc@1=31.8620 Acc@5=60.2820 Loss=3.1904 Lr=0.0677 Time=7.8913
+[09/06 05:11:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=155 Acc@1=33.1720 Acc@5=62.0620 Loss=3.0944 Lr=0.0673 Time=7.9422
+[09/06 05:18:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=156 Acc@1=32.3900 Acc@5=61.4560 Loss=3.1394 Lr=0.0669 Time=7.9932
+[09/06 05:25:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=157 Acc@1=31.0900 Acc@5=59.6280 Loss=3.2435 Lr=0.0666 Time=8.0441
+[09/06 05:32:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=158 Acc@1=31.3000 Acc@5=59.3840 Loss=3.2044 Lr=0.0662 Time=8.0951
+[09/06 05:39:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=159 Acc@1=33.2300 Acc@5=61.7260 Loss=3.0908 Lr=0.0658 Time=8.1460
+[09/06 05:46:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=160 Acc@1=30.9400 Acc@5=59.6240 Loss=3.2258 Lr=0.0655 Time=8.1969
+[09/06 05:53:06] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=161 Acc@1=31.5260 Acc@5=59.5600 Loss=3.2208 Lr=0.0651 Time=8.2478
+[09/06 06:00:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=162 Acc@1=32.5280 Acc@5=61.2320 Loss=3.1215 Lr=0.0647 Time=8.2987
+[09/06 06:07:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=163 Acc@1=30.1300 Acc@5=57.7800 Loss=3.2842 Lr=0.0643 Time=8.3496
+[09/06 06:14:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=164 Acc@1=30.5480 Acc@5=58.9700 Loss=3.2631 Lr=0.0639 Time=8.4006
+[09/06 06:21:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=165 Acc@1=32.4000 Acc@5=61.1220 Loss=3.1570 Lr=0.0636 Time=8.4514
+[09/06 06:28:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=166 Acc@1=32.2540 Acc@5=60.3860 Loss=3.1426 Lr=0.0632 Time=8.5024
+[09/06 06:35:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=167 Acc@1=31.7160 Acc@5=60.7960 Loss=3.1910 Lr=0.0628 Time=8.5536
+[09/06 06:42:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=168 Acc@1=31.1400 Acc@5=59.6300 Loss=3.2336 Lr=0.0624 Time=8.6045
+[09/06 06:49:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=169 Acc@1=33.7000 Acc@5=62.2620 Loss=3.0776 Lr=0.0621 Time=8.6555
+[09/06 06:56:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=170 Acc@1=33.9440 Acc@5=63.0780 Loss=3.0370 Lr=0.0617 Time=8.7064
+[09/06 07:03:11] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=171 Acc@1=33.3940 Acc@5=61.8900 Loss=3.0979 Lr=0.0613 Time=8.7573
+[09/06 07:10:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=172 Acc@1=34.7520 Acc@5=63.1180 Loss=2.9958 Lr=0.0609 Time=8.8083
+[09/06 07:17:11] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=173 Acc@1=34.1620 Acc@5=63.0680 Loss=3.0165 Lr=0.0605 Time=8.8592
+[09/06 07:24:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=174 Acc@1=33.5240 Acc@5=62.8500 Loss=3.0814 Lr=0.0601 Time=8.9102
+[09/06 07:31:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=175 Acc@1=33.9920 Acc@5=63.3120 Loss=3.0021 Lr=0.0598 Time=8.9611
+[09/06 07:38:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=176 Acc@1=32.2320 Acc@5=60.5180 Loss=3.1714 Lr=0.0594 Time=9.0121
+[09/06 07:45:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=177 Acc@1=35.0920 Acc@5=64.1260 Loss=3.0003 Lr=0.0590 Time=9.0630
+[09/06 07:52:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=178 Acc@1=33.7880 Acc@5=62.8200 Loss=3.0636 Lr=0.0586 Time=9.1139
+[09/06 07:59:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=179 Acc@1=34.3380 Acc@5=62.8260 Loss=3.0440 Lr=0.0582 Time=9.1649
+[09/06 08:06:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=180 Acc@1=34.9360 Acc@5=63.4160 Loss=3.0121 Lr=0.0578 Time=9.2158
+[09/06 08:13:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=181 Acc@1=34.4600 Acc@5=62.8520 Loss=3.0565 Lr=0.0574 Time=9.2667
+[09/06 08:20:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=182 Acc@1=33.9140 Acc@5=62.7140 Loss=3.0233 Lr=0.0570 Time=9.3176
+[09/06 08:27:27] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=183 Acc@1=32.6600 Acc@5=60.6700 Loss=3.1885 Lr=0.0567 Time=9.3685
+[09/06 08:34:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=184 Acc@1=34.4700 Acc@5=63.3700 Loss=3.0386 Lr=0.0563 Time=9.4194
+[09/06 08:41:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=185 Acc@1=34.3440 Acc@5=63.3700 Loss=3.0492 Lr=0.0559 Time=9.4704
+[09/06 08:48:29] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=186 Acc@1=34.4480 Acc@5=63.4520 Loss=3.0108 Lr=0.0555 Time=9.5213
+[09/06 08:55:32] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=187 Acc@1=34.8200 Acc@5=63.5200 Loss=3.0242 Lr=0.0551 Time=9.5722
+[09/06 09:02:35] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=188 Acc@1=34.5460 Acc@5=63.1580 Loss=3.0118 Lr=0.0547 Time=9.6231
+[09/06 09:09:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=189 Acc@1=34.4100 Acc@5=62.8700 Loss=3.0303 Lr=0.0543 Time=9.6741
+[09/06 09:16:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=190 Acc@1=33.6060 Acc@5=62.3560 Loss=3.0487 Lr=0.0539 Time=9.7250
+[09/06 09:23:38] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=191 Acc@1=33.9060 Acc@5=63.1400 Loss=3.0477 Lr=0.0535 Time=9.7760
+[09/06 09:30:40] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=192 Acc@1=35.9400 Acc@5=64.6360 Loss=2.9348 Lr=0.0531 Time=9.8269
+[09/06 09:37:43] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=193 Acc@1=36.0700 Acc@5=65.0480 Loss=2.9267 Lr=0.0527 Time=9.8778
+[09/06 09:44:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=194 Acc@1=35.4100 Acc@5=64.7880 Loss=2.9406 Lr=0.0524 Time=9.9288
+[09/06 09:51:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=195 Acc@1=36.2100 Acc@5=65.2540 Loss=2.9192 Lr=0.0520 Time=9.9797
+[09/06 09:58:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=196 Acc@1=35.3740 Acc@5=64.3660 Loss=2.9623 Lr=0.0516 Time=10.0306
+[09/06 10:05:51] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=197 Acc@1=34.8600 Acc@5=63.5540 Loss=2.9754 Lr=0.0512 Time=10.0815
+[09/06 10:12:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=198 Acc@1=34.0660 Acc@5=62.9180 Loss=3.0355 Lr=0.0508 Time=10.1324
+[09/06 10:19:54] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=199 Acc@1=34.3920 Acc@5=63.0860 Loss=3.0554 Lr=0.0504 Time=10.1833
+[09/06 10:26:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=200 Acc@1=34.7100 Acc@5=63.4060 Loss=3.0127 Lr=0.0500 Time=10.2342
+[09/06 10:33:58] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=201 Acc@1=32.8240 Acc@5=61.1120 Loss=3.1232 Lr=0.0496 Time=10.2851
+[09/06 10:41:01] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=202 Acc@1=33.2180 Acc@5=62.1840 Loss=3.0626 Lr=0.0492 Time=10.3361
+[09/06 10:48:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=203 Acc@1=36.6740 Acc@5=65.8320 Loss=2.9070 Lr=0.0488 Time=10.3870
+[09/06 10:55:04] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=204 Acc@1=36.1560 Acc@5=64.9520 Loss=2.9598 Lr=0.0484 Time=10.4379
+[09/06 11:02:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=205 Acc@1=35.4080 Acc@5=64.0240 Loss=2.9773 Lr=0.0480 Time=10.4888
+[09/06 11:09:06] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=206 Acc@1=36.7620 Acc@5=65.6620 Loss=2.9021 Lr=0.0476 Time=10.5398
+[09/06 11:16:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=207 Acc@1=34.9800 Acc@5=63.5700 Loss=2.9938 Lr=0.0473 Time=10.5907
+[09/06 11:23:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=208 Acc@1=35.6680 Acc@5=64.6760 Loss=2.9417 Lr=0.0469 Time=10.6416
+[09/06 11:30:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=209 Acc@1=35.6820 Acc@5=64.8320 Loss=2.9529 Lr=0.0465 Time=10.6925
+[09/06 11:37:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=210 Acc@1=35.2840 Acc@5=63.9940 Loss=2.9584 Lr=0.0461 Time=10.7434
+[09/06 11:44:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=211 Acc@1=34.4460 Acc@5=62.5660 Loss=3.0053 Lr=0.0457 Time=10.7944
+[09/06 11:51:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=212 Acc@1=36.3680 Acc@5=65.3120 Loss=2.9203 Lr=0.0453 Time=10.8453
+[09/06 11:58:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=213 Acc@1=36.2240 Acc@5=64.8400 Loss=2.9440 Lr=0.0449 Time=10.8962
+[09/06 12:05:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=214 Acc@1=36.8940 Acc@5=66.2700 Loss=2.8671 Lr=0.0445 Time=10.9472
+[09/06 12:12:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=215 Acc@1=36.9980 Acc@5=66.1500 Loss=2.8782 Lr=0.0441 Time=10.9981
+[09/06 12:19:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=216 Acc@1=37.3940 Acc@5=66.2600 Loss=2.8532 Lr=0.0437 Time=11.0490
+[09/06 12:26:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=217 Acc@1=36.7360 Acc@5=65.8520 Loss=2.9029 Lr=0.0433 Time=11.0999
+[09/06 12:33:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=218 Acc@1=35.7460 Acc@5=63.6760 Loss=2.9872 Lr=0.0430 Time=11.1508
+[09/06 12:40:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=219 Acc@1=37.6760 Acc@5=67.0000 Loss=2.8482 Lr=0.0426 Time=11.2017
+[09/06 12:47:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=220 Acc@1=36.2340 Acc@5=65.2620 Loss=2.8872 Lr=0.0422 Time=11.2526
+[09/06 12:54:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=221 Acc@1=38.4840 Acc@5=67.0880 Loss=2.8017 Lr=0.0418 Time=11.3036
+[09/06 13:01:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=222 Acc@1=36.7940 Acc@5=65.1700 Loss=2.8992 Lr=0.0414 Time=11.3545
+[09/06 13:08:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=223 Acc@1=36.9240 Acc@5=66.2600 Loss=2.8850 Lr=0.0410 Time=11.4054
+[09/06 13:15:19] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=224 Acc@1=37.3520 Acc@5=65.8260 Loss=2.8850 Lr=0.0406 Time=11.4563
+[09/06 13:22:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=225 Acc@1=38.3580 Acc@5=67.2540 Loss=2.7756 Lr=0.0402 Time=11.5072
+[09/06 13:29:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=226 Acc@1=38.1840 Acc@5=67.2160 Loss=2.8009 Lr=0.0399 Time=11.5582
+[09/06 13:36:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=227 Acc@1=38.3500 Acc@5=67.5420 Loss=2.7667 Lr=0.0395 Time=11.6091
+[09/06 13:43:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=228 Acc@1=37.7160 Acc@5=67.0440 Loss=2.8068 Lr=0.0391 Time=11.6600
+[09/06 13:50:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=229 Acc@1=38.6800 Acc@5=67.8080 Loss=2.7713 Lr=0.0387 Time=11.7110
+[09/06 13:57:08] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=230 Acc@1=39.1340 Acc@5=68.4360 Loss=2.7685 Lr=0.0383 Time=11.7619
+[09/06 14:04:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=231 Acc@1=38.6220 Acc@5=68.2720 Loss=2.7655 Lr=0.0379 Time=11.8127
+[09/06 14:11:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=232 Acc@1=38.6440 Acc@5=67.6880 Loss=2.7620 Lr=0.0376 Time=11.8636
+[09/06 14:18:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=233 Acc@1=39.5740 Acc@5=68.9620 Loss=2.6945 Lr=0.0372 Time=11.9145
+[09/06 14:25:01] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=234 Acc@1=38.6860 Acc@5=67.9100 Loss=2.7772 Lr=0.0368 Time=11.9654
+[09/06 14:32:00] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=235 Acc@1=39.7900 Acc@5=68.7980 Loss=2.7015 Lr=0.0364 Time=12.0163
+[09/06 14:38:59] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=236 Acc@1=38.2740 Acc@5=67.5580 Loss=2.7811 Lr=0.0361 Time=12.0672
+[09/06 14:45:58] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=237 Acc@1=40.0720 Acc@5=69.2600 Loss=2.6872 Lr=0.0357 Time=12.1181
+[09/06 14:52:56] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=238 Acc@1=40.1140 Acc@5=69.3420 Loss=2.6903 Lr=0.0353 Time=12.1690
+[09/06 14:59:54] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=239 Acc@1=39.8620 Acc@5=68.5020 Loss=2.7250 Lr=0.0349 Time=12.2199
+[09/06 15:06:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=240 Acc@1=39.6520 Acc@5=68.9480 Loss=2.6921 Lr=0.0345 Time=12.2707
+[09/06 15:13:50] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=241 Acc@1=38.8060 Acc@5=68.4060 Loss=2.7397 Lr=0.0342 Time=12.3216
+[09/06 15:20:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=242 Acc@1=38.9020 Acc@5=68.0440 Loss=2.7310 Lr=0.0338 Time=12.3724
+[09/06 15:27:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=243 Acc@1=40.9240 Acc@5=70.3720 Loss=2.6423 Lr=0.0334 Time=12.4233
+[09/06 15:34:44] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=244 Acc@1=39.9160 Acc@5=68.9300 Loss=2.6929 Lr=0.0331 Time=12.4742
+[09/06 15:41:41] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=245 Acc@1=39.3680 Acc@5=68.5400 Loss=2.7158 Lr=0.0327 Time=12.5250
+[09/06 15:48:41] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=246 Acc@1=38.7300 Acc@5=67.9380 Loss=2.7677 Lr=0.0323 Time=12.5759
+[09/06 15:55:39] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=247 Acc@1=39.6940 Acc@5=68.8120 Loss=2.7133 Lr=0.0320 Time=12.6268
+[09/06 16:02:38] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=248 Acc@1=39.1440 Acc@5=68.1700 Loss=2.7451 Lr=0.0316 Time=12.6776
+[09/06 16:09:38] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=249 Acc@1=41.0580 Acc@5=70.0740 Loss=2.6284 Lr=0.0312 Time=12.7287
+[09/06 16:16:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=250 Acc@1=40.7840 Acc@5=69.7680 Loss=2.6413 Lr=0.0309 Time=12.7797
+[09/06 16:23:34] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=251 Acc@1=39.3340 Acc@5=68.0700 Loss=2.7196 Lr=0.0305 Time=12.8305
+[09/06 16:30:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=252 Acc@1=39.4840 Acc@5=68.5260 Loss=2.6986 Lr=0.0301 Time=12.8814
+[09/06 16:37:32] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=253 Acc@1=40.3080 Acc@5=68.9920 Loss=2.6779 Lr=0.0298 Time=12.9322
+[09/06 16:44:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=254 Acc@1=40.2920 Acc@5=69.6580 Loss=2.6519 Lr=0.0294 Time=12.9831
+[09/06 16:51:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=255 Acc@1=40.9360 Acc@5=69.7060 Loss=2.6518 Lr=0.0291 Time=13.0340
+[09/06 16:58:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=256 Acc@1=41.2520 Acc@5=70.3260 Loss=2.6227 Lr=0.0287 Time=13.0849
+[09/06 17:05:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=257 Acc@1=41.1200 Acc@5=70.1860 Loss=2.6455 Lr=0.0284 Time=13.1357
+[09/06 17:12:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=258 Acc@1=42.0540 Acc@5=70.9820 Loss=2.6032 Lr=0.0280 Time=13.1866
+[09/06 17:19:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=259 Acc@1=42.9580 Acc@5=71.8760 Loss=2.5444 Lr=0.0277 Time=13.2375
+[09/06 17:26:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=260 Acc@1=41.3240 Acc@5=70.4560 Loss=2.6301 Lr=0.0273 Time=13.2883
+[09/06 17:33:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=261 Acc@1=40.6820 Acc@5=69.7380 Loss=2.6502 Lr=0.0270 Time=13.3392
+[09/06 17:40:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=262 Acc@1=41.7220 Acc@5=70.8820 Loss=2.5930 Lr=0.0266 Time=13.3900
+[09/06 17:47:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=263 Acc@1=40.1180 Acc@5=69.3200 Loss=2.6560 Lr=0.0263 Time=13.4408
+[09/06 17:54:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=264 Acc@1=41.7340 Acc@5=70.7320 Loss=2.6017 Lr=0.0259 Time=13.4917
+[09/06 18:01:03] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=265 Acc@1=40.7180 Acc@5=69.7120 Loss=2.6558 Lr=0.0256 Time=13.5426
+[09/06 18:08:01] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=266 Acc@1=42.8120 Acc@5=71.7960 Loss=2.5523 Lr=0.0252 Time=13.5934
+[09/06 18:14:58] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=267 Acc@1=43.5200 Acc@5=72.7480 Loss=2.5069 Lr=0.0249 Time=13.6443
+[09/06 18:21:55] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=268 Acc@1=42.5900 Acc@5=71.7500 Loss=2.5318 Lr=0.0245 Time=13.6951
+[09/06 18:28:51] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=269 Acc@1=42.7100 Acc@5=72.1120 Loss=2.5236 Lr=0.0242 Time=13.7459
+[09/06 18:35:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=270 Acc@1=41.1860 Acc@5=69.9380 Loss=2.6604 Lr=0.0239 Time=13.7967
+[09/06 18:42:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=271 Acc@1=41.5880 Acc@5=70.7660 Loss=2.5750 Lr=0.0235 Time=13.8476
+[09/06 18:49:42] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=272 Acc@1=42.6160 Acc@5=71.2720 Loss=2.5628 Lr=0.0232 Time=13.8984
+[09/06 18:56:39] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=273 Acc@1=42.7400 Acc@5=71.5360 Loss=2.5581 Lr=0.0229 Time=13.9493
+[09/06 19:03:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=274 Acc@1=42.1260 Acc@5=71.0340 Loss=2.5664 Lr=0.0225 Time=14.0001
+[09/06 19:10:34] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=275 Acc@1=41.1240 Acc@5=69.9100 Loss=2.6309 Lr=0.0222 Time=14.0510
+[09/06 19:17:32] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=276 Acc@1=41.0480 Acc@5=70.1800 Loss=2.6053 Lr=0.0219 Time=14.1018
+[09/06 19:24:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=277 Acc@1=40.8420 Acc@5=69.5720 Loss=2.6655 Lr=0.0216 Time=14.1526
+[09/06 19:31:31] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=278 Acc@1=42.3780 Acc@5=71.3200 Loss=2.5430 Lr=0.0212 Time=14.2034
+[09/06 19:38:31] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=279 Acc@1=43.0360 Acc@5=71.5640 Loss=2.5237 Lr=0.0209 Time=14.2543
+[09/06 19:45:31] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=280 Acc@1=43.5360 Acc@5=72.4800 Loss=2.4789 Lr=0.0206 Time=14.3052
+[09/06 19:52:31] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=281 Acc@1=43.7760 Acc@5=72.5280 Loss=2.4594 Lr=0.0203 Time=14.3560
+[09/06 19:59:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=282 Acc@1=43.4840 Acc@5=72.0540 Loss=2.5103 Lr=0.0200 Time=14.4069
+[09/06 20:06:29] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=283 Acc@1=43.3120 Acc@5=72.1680 Loss=2.4944 Lr=0.0197 Time=14.4578
+[09/06 20:13:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=284 Acc@1=44.3740 Acc@5=73.1340 Loss=2.4470 Lr=0.0194 Time=14.5086
+[09/06 20:20:27] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=285 Acc@1=44.2240 Acc@5=72.9600 Loss=2.4420 Lr=0.0190 Time=14.5594
+[09/06 20:27:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=286 Acc@1=44.4600 Acc@5=73.4680 Loss=2.4271 Lr=0.0187 Time=14.6103
+[09/06 20:34:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=287 Acc@1=43.7640 Acc@5=72.5760 Loss=2.4591 Lr=0.0184 Time=14.6611
+[09/06 20:41:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=288 Acc@1=44.5980 Acc@5=73.3140 Loss=2.4308 Lr=0.0181 Time=14.7120
+[09/06 20:48:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=289 Acc@1=44.4260 Acc@5=73.1740 Loss=2.4150 Lr=0.0178 Time=14.7628
+[09/06 20:55:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=290 Acc@1=44.0360 Acc@5=72.6560 Loss=2.4598 Lr=0.0175 Time=14.8137
+[09/06 21:02:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=291 Acc@1=45.2500 Acc@5=73.9940 Loss=2.4051 Lr=0.0172 Time=14.8645
+[09/06 21:09:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=292 Acc@1=44.0160 Acc@5=72.6780 Loss=2.4449 Lr=0.0169 Time=14.9154
+[09/06 21:16:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=293 Acc@1=45.4960 Acc@5=74.1560 Loss=2.3827 Lr=0.0166 Time=14.9663
+[09/06 21:23:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=294 Acc@1=45.6300 Acc@5=73.8300 Loss=2.3780 Lr=0.0163 Time=15.0171
+[09/06 21:30:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=295 Acc@1=45.3200 Acc@5=73.9500 Loss=2.3859 Lr=0.0161 Time=15.0680
+[09/06 21:37:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=296 Acc@1=44.8760 Acc@5=73.7060 Loss=2.4134 Lr=0.0158 Time=15.1188
+[09/06 21:44:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=297 Acc@1=45.8360 Acc@5=74.8400 Loss=2.3607 Lr=0.0155 Time=15.1697
+[09/06 21:51:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=298 Acc@1=45.7620 Acc@5=74.6460 Loss=2.3718 Lr=0.0152 Time=15.2206
+[09/06 21:58:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=299 Acc@1=45.9020 Acc@5=74.4640 Loss=2.3560 Lr=0.0149 Time=15.2714
+[09/06 22:05:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=300 Acc@1=45.5920 Acc@5=73.8520 Loss=2.3831 Lr=0.0146 Time=15.3223
+[09/06 22:12:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=301 Acc@1=45.2720 Acc@5=74.0180 Loss=2.4111 Lr=0.0144 Time=15.3731
+[09/06 22:19:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=302 Acc@1=44.9600 Acc@5=73.8500 Loss=2.4004 Lr=0.0141 Time=15.4239
+[09/06 22:26:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=303 Acc@1=46.5140 Acc@5=74.7700 Loss=2.3454 Lr=0.0138 Time=15.4747
+[09/06 22:33:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=304 Acc@1=46.1320 Acc@5=74.8800 Loss=2.3514 Lr=0.0136 Time=15.5256
+[09/06 22:40:21] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=305 Acc@1=45.4680 Acc@5=74.0640 Loss=2.3915 Lr=0.0133 Time=15.5766
+[09/06 22:47:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=306 Acc@1=46.1840 Acc@5=74.8920 Loss=2.3271 Lr=0.0130 Time=15.6275
+[09/06 22:54:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=307 Acc@1=46.7440 Acc@5=75.1640 Loss=2.3219 Lr=0.0128 Time=15.6783
+[09/06 23:01:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=308 Acc@1=46.5480 Acc@5=75.3420 Loss=2.3279 Lr=0.0125 Time=15.7291
+[09/06 23:08:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=309 Acc@1=46.4680 Acc@5=74.9740 Loss=2.3429 Lr=0.0122 Time=15.7800
+[09/06 23:15:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=310 Acc@1=46.6840 Acc@5=74.9340 Loss=2.3372 Lr=0.0120 Time=15.8308
+[09/06 23:22:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=311 Acc@1=45.7060 Acc@5=74.1760 Loss=2.3640 Lr=0.0117 Time=15.8816
+[09/06 23:29:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=312 Acc@1=46.7800 Acc@5=75.2100 Loss=2.3070 Lr=0.0115 Time=15.9325
+[09/06 23:36:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=313 Acc@1=46.7080 Acc@5=75.1740 Loss=2.3210 Lr=0.0112 Time=15.9833
+[09/06 23:43:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=314 Acc@1=47.2180 Acc@5=75.5320 Loss=2.3050 Lr=0.0110 Time=16.0341
+[09/06 23:50:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=315 Acc@1=47.8240 Acc@5=76.3740 Loss=2.2558 Lr=0.0107 Time=16.0849
+[09/06 23:57:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=316 Acc@1=46.2400 Acc@5=74.6260 Loss=2.3435 Lr=0.0105 Time=16.1358
+[09/07 00:04:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=317 Acc@1=48.0500 Acc@5=76.3400 Loss=2.2435 Lr=0.0103 Time=16.1866
+[09/07 00:11:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=318 Acc@1=47.9520 Acc@5=76.3540 Loss=2.2394 Lr=0.0100 Time=16.2375
+[09/07 00:18:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=319 Acc@1=48.2800 Acc@5=76.2960 Loss=2.2365 Lr=0.0098 Time=16.2884
+[09/07 00:25:19] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=320 Acc@1=48.5960 Acc@5=76.8700 Loss=2.2082 Lr=0.0095 Time=16.3392
+[09/07 00:32:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=321 Acc@1=48.2920 Acc@5=76.3380 Loss=2.2470 Lr=0.0093 Time=16.3901
+[09/07 00:39:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=322 Acc@1=47.9000 Acc@5=76.0040 Loss=2.2532 Lr=0.0091 Time=16.4409
+[09/07 00:46:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=323 Acc@1=48.2240 Acc@5=76.4640 Loss=2.2319 Lr=0.0089 Time=16.4917
+[09/07 00:53:24] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=324 Acc@1=47.5380 Acc@5=76.0080 Loss=2.2559 Lr=0.0086 Time=16.5426
+[09/07 01:00:26] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=325 Acc@1=48.4600 Acc@5=76.6460 Loss=2.2194 Lr=0.0084 Time=16.5935
+[09/07 01:07:28] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=326 Acc@1=48.5460 Acc@5=76.7860 Loss=2.2160 Lr=0.0082 Time=16.6443
+[09/07 01:14:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=327 Acc@1=49.0380 Acc@5=77.0980 Loss=2.1983 Lr=0.0080 Time=16.6951
+[09/07 01:21:27] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=328 Acc@1=48.4940 Acc@5=76.6000 Loss=2.2036 Lr=0.0078 Time=16.7460
+[09/07 01:28:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=329 Acc@1=48.4320 Acc@5=76.8060 Loss=2.2267 Lr=0.0076 Time=16.7968
+[09/07 01:35:23] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=330 Acc@1=48.8640 Acc@5=76.5880 Loss=2.2185 Lr=0.0074 Time=16.8476
+[09/07 01:42:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=331 Acc@1=49.1020 Acc@5=77.3540 Loss=2.1774 Lr=0.0072 Time=16.8985
+[09/07 01:49:22] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=332 Acc@1=49.1080 Acc@5=77.1940 Loss=2.1951 Lr=0.0070 Time=16.9493
+[09/07 01:56:20] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=333 Acc@1=49.2380 Acc@5=77.1580 Loss=2.1801 Lr=0.0068 Time=17.0001
+[09/07 02:03:19] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=334 Acc@1=49.0680 Acc@5=77.3540 Loss=2.1828 Lr=0.0066 Time=17.0510
+[09/07 02:10:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=335 Acc@1=49.2640 Acc@5=77.3840 Loss=2.1832 Lr=0.0064 Time=17.1018
+[09/07 02:17:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=336 Acc@1=49.7720 Acc@5=77.6780 Loss=2.1552 Lr=0.0062 Time=17.1526
+[09/07 02:24:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=337 Acc@1=50.0660 Acc@5=77.8480 Loss=2.1370 Lr=0.0060 Time=17.2034
+[09/07 02:31:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=338 Acc@1=49.7420 Acc@5=77.5800 Loss=2.1521 Lr=0.0058 Time=17.2542
+[09/07 02:38:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=339 Acc@1=50.0260 Acc@5=77.8140 Loss=2.1578 Lr=0.0056 Time=17.3050
+[09/07 02:45:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=340 Acc@1=49.8340 Acc@5=77.7020 Loss=2.1366 Lr=0.0054 Time=17.3558
+[09/07 02:52:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=341 Acc@1=49.8940 Acc@5=77.9360 Loss=2.1423 Lr=0.0053 Time=17.4066
+[09/07 02:59:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=342 Acc@1=50.1020 Acc@5=77.8760 Loss=2.1320 Lr=0.0051 Time=17.4575
+[09/07 03:06:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=343 Acc@1=50.6700 Acc@5=78.4560 Loss=2.1031 Lr=0.0049 Time=17.5083
+[09/07 03:13:18] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=344 Acc@1=50.5380 Acc@5=78.2140 Loss=2.1061 Lr=0.0048 Time=17.5591
+[09/07 03:20:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=345 Acc@1=50.3160 Acc@5=78.0240 Loss=2.1236 Lr=0.0046 Time=17.6100
+[09/07 03:27:13] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=346 Acc@1=50.9340 Acc@5=78.6240 Loss=2.0969 Lr=0.0044 Time=17.6608
+[09/07 03:34:13] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=347 Acc@1=50.8620 Acc@5=78.4360 Loss=2.1007 Lr=0.0043 Time=17.7117
+[09/07 03:41:14] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=348 Acc@1=50.6640 Acc@5=78.3500 Loss=2.1084 Lr=0.0041 Time=17.7625
+[09/07 03:48:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=349 Acc@1=50.8440 Acc@5=78.5400 Loss=2.0955 Lr=0.0040 Time=17.8134
+[09/07 03:55:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=350 Acc@1=51.2940 Acc@5=79.0000 Loss=2.0611 Lr=0.0038 Time=17.8642
+[09/07 04:02:15] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=351 Acc@1=51.3780 Acc@5=78.9900 Loss=2.0572 Lr=0.0037 Time=17.9150
+[09/07 04:09:17] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=352 Acc@1=51.3880 Acc@5=78.8860 Loss=2.0667 Lr=0.0035 Time=17.9658
+[09/07 04:16:16] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=353 Acc@1=51.0200 Acc@5=78.7320 Loss=2.0862 Lr=0.0034 Time=18.0166
+[09/07 04:23:12] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=354 Acc@1=51.4480 Acc@5=79.1020 Loss=2.0606 Lr=0.0032 Time=18.0674
+[09/07 04:30:10] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=355 Acc@1=51.6560 Acc@5=79.1120 Loss=2.0557 Lr=0.0031 Time=18.1182
+[09/07 04:37:09] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=356 Acc@1=51.4820 Acc@5=79.1080 Loss=2.0522 Lr=0.0030 Time=18.1690
+[09/07 04:44:07] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=357 Acc@1=51.3780 Acc@5=79.0300 Loss=2.0696 Lr=0.0028 Time=18.2198
+[09/07 04:51:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=358 Acc@1=51.5600 Acc@5=79.1640 Loss=2.0642 Lr=0.0027 Time=18.2706
+[09/07 04:58:04] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=359 Acc@1=51.8960 Acc@5=79.2640 Loss=2.0505 Lr=0.0026 Time=18.3214
+[09/07 05:05:06] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=360 Acc@1=52.1560 Acc@5=79.6120 Loss=2.0177 Lr=0.0024 Time=18.3722
+[09/07 05:12:05] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=361 Acc@1=51.7580 Acc@5=79.1860 Loss=2.0511 Lr=0.0023 Time=18.4230
+[09/07 05:19:04] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=362 Acc@1=52.1120 Acc@5=79.6520 Loss=2.0321 Lr=0.0022 Time=18.4738
+[09/07 05:26:02] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=363 Acc@1=52.1160 Acc@5=79.6500 Loss=2.0274 Lr=0.0021 Time=18.5246
+[09/07 05:33:00] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=364 Acc@1=52.2500 Acc@5=79.5720 Loss=2.0198 Lr=0.0020 Time=18.5755
+[09/07 05:40:00] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=365 Acc@1=52.4240 Acc@5=79.8020 Loss=2.0215 Lr=0.0019 Time=18.6263
+[09/07 05:46:59] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=366 Acc@1=52.2880 Acc@5=79.6220 Loss=2.0249 Lr=0.0018 Time=18.6771
+[09/07 05:53:58] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=367 Acc@1=52.6300 Acc@5=79.8460 Loss=2.0135 Lr=0.0017 Time=18.7279
+[09/07 06:00:55] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=368 Acc@1=52.4060 Acc@5=79.7820 Loss=2.0201 Lr=0.0016 Time=18.7787
+[09/07 06:07:54] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=369 Acc@1=52.4580 Acc@5=79.9940 Loss=2.0064 Lr=0.0015 Time=18.8295
+[09/07 06:14:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=370 Acc@1=52.5040 Acc@5=79.9080 Loss=2.0070 Lr=0.0014 Time=18.8803
+[09/07 06:21:51] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=371 Acc@1=52.7560 Acc@5=79.9800 Loss=1.9990 Lr=0.0013 Time=18.9311
+[09/07 06:28:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=372 Acc@1=52.5580 Acc@5=79.9140 Loss=2.0106 Lr=0.0012 Time=18.9819
+[09/07 06:35:51] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=373 Acc@1=52.8320 Acc@5=80.1880 Loss=1.9923 Lr=0.0011 Time=19.0327
+[09/07 06:42:53] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=374 Acc@1=52.7840 Acc@5=80.0380 Loss=2.0005 Lr=0.0010 Time=19.0835
+[09/07 06:49:50] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=375 Acc@1=52.8580 Acc@5=80.1420 Loss=1.9887 Lr=0.0010 Time=19.1343
+[09/07 06:56:52] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=376 Acc@1=52.8660 Acc@5=80.2020 Loss=1.9890 Lr=0.0009 Time=19.1851
+[09/07 07:03:50] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=377 Acc@1=52.8940 Acc@5=80.2720 Loss=1.9874 Lr=0.0008 Time=19.2359
+[09/07 07:10:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=378 Acc@1=53.0860 Acc@5=80.1680 Loss=1.9887 Lr=0.0007 Time=19.2867
+[09/07 07:17:47] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=379 Acc@1=53.1000 Acc@5=80.3360 Loss=1.9742 Lr=0.0007 Time=19.3376
+[09/07 07:24:47] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=380 Acc@1=52.9860 Acc@5=80.2880 Loss=1.9799 Lr=0.0006 Time=19.3884
+[09/07 07:31:46] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=381 Acc@1=52.9700 Acc@5=80.3320 Loss=1.9782 Lr=0.0006 Time=19.4391
+[09/07 07:38:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=382 Acc@1=52.9780 Acc@5=80.3020 Loss=1.9796 Lr=0.0005 Time=19.4899
+[09/07 07:45:44] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=383 Acc@1=53.1760 Acc@5=80.3180 Loss=1.9725 Lr=0.0004 Time=19.5407
+[09/07 07:52:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=384 Acc@1=53.1960 Acc@5=80.4720 Loss=1.9730 Lr=0.0004 Time=19.5915
+[09/07 07:59:46] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=385 Acc@1=53.2420 Acc@5=80.4420 Loss=1.9729 Lr=0.0003 Time=19.6424
+[09/07 08:06:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=386 Acc@1=53.2880 Acc@5=80.5280 Loss=1.9693 Lr=0.0003 Time=19.6931
+[09/07 08:13:47] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=387 Acc@1=53.2460 Acc@5=80.4880 Loss=1.9709 Lr=0.0003 Time=19.7439
+[09/07 08:20:47] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=388 Acc@1=53.3340 Acc@5=80.4420 Loss=1.9692 Lr=0.0002 Time=19.7947
+[09/07 08:27:48] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=389 Acc@1=53.4160 Acc@5=80.5060 Loss=1.9673 Lr=0.0002 Time=19.8456
+[09/07 08:34:49] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=390 Acc@1=53.2600 Acc@5=80.5320 Loss=1.9689 Lr=0.0002 Time=19.8964
+[09/07 08:41:46] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=391 Acc@1=53.2920 Acc@5=80.4240 Loss=1.9698 Lr=0.0001 Time=19.9471
+[09/07 08:48:45] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=392 Acc@1=53.3320 Acc@5=80.5200 Loss=1.9640 Lr=0.0001 Time=19.9980
+[09/07 08:55:43] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=393 Acc@1=53.3120 Acc@5=80.5600 Loss=1.9656 Lr=0.0001 Time=20.0488
+[09/07 09:02:40] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=394 Acc@1=53.3040 Acc@5=80.4980 Loss=1.9684 Lr=0.0001 Time=20.0996
+[09/07 09:09:36] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=395 Acc@1=53.3220 Acc@5=80.5420 Loss=1.9711 Lr=0.0000 Time=20.1504
+[09/07 09:16:33] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=396 Acc@1=53.2900 Acc@5=80.4800 Loss=1.9686 Lr=0.0000 Time=20.2012
+[09/07 09:23:30] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=397 Acc@1=53.4440 Acc@5=80.5540 Loss=1.9663 Lr=0.0000 Time=20.2520
+[09/07 09:30:27] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=398 Acc@1=53.4500 Acc@5=80.5380 Loss=1.9690 Lr=0.0000 Time=20.3028
+[09/07 09:37:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: [Eval] Epoch=399 Acc@1=53.4100 Acc@5=80.5540 Loss=1.9636 Lr=0.0000 Time=20.3537
+[09/07 09:37:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: Best: 53.4500
+[09/07 09:37:25] imagenet-resnet50_imagenet-resnet18_imagenet INFO: Generation Cost: 20.354
