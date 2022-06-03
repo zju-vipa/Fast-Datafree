@@ -100,8 +100,10 @@ python train_scratch.py --model wrn40_2 --dataset cifar10 --batch-size 256 --lr 
     # beta>0 to use hard targets
     python vanilla_kd.py --teacher wrn40_2 --student wrn16_1 --dataset cifar10 --transfer_set cifar10 --beta 0.1 --batch-size 128 --lr 0.1 --epoch 200 --gpu 0
     ```
+* ImageNet: please refers to the [logs](https://github.com/zju-vipa/Fast-Datafree/tree/main/logs) and  [the script](https://github.com/zju-vipa/Fast-Datafree/blob/main/datafree_kd_imagenet.py) for more details.  
 
-### 3. Train your own models/datasets
+
+### 3. Train your own models
 You can register your models and datasets in registry.py by modifying `NORMALIZ_DICT`, `MODEL_DICT` and `get_dataset`. Then you can run the above commands to train your own models.
 
 
