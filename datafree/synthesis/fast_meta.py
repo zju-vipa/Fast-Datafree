@@ -29,7 +29,7 @@ def fomaml_grad(src, tar):
 
 def reset_l0(model):
     for n,m in model.named_modules():
-        if n == "l1.0" or "conv_blocks.0":
+        if n == "l1.0" or n == "conv_blocks.0":
             nn.init.normal_(m.weight, 0.0, 0.02)
             nn.init.constant_(m.bias, 0)
 
