@@ -277,7 +277,7 @@ def main_worker(gpu, ngpus_per_node, args):
         if args.distributed:
             train_sampler.set_epoch(epoch)
         args.current_epoch=epoch
-        train( train_loader, [student, teacher], optimizer, args)
+        train(train_loader, [student, teacher], optimizer, args)
         student.eval()
         eval_results = evaluator(student, device=args.gpu)
         (acc1, acc5), val_loss = eval_results['Acc'], eval_results['Loss']
@@ -297,8 +297,9 @@ def main_worker(gpu, ngpus_per_node, args):
                 'optimizer' : optimizer.state_dict(),
                 'scheduler': scheduler.state_dict(),
             }, is_best, _best_ckpt)
-    if args.rank<=0:
+    if args.rank <= 0:
         args.logger.info("Best: %.4f"%best_acc1)
+
 
 def train(train_loader, model, optimizer, args):
     loss_metric = datafree.metrics.RunningLoss(datafree.criterions.KLDiv(reduction='sum'))

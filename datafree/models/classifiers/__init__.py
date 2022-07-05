@@ -1,1 +1,1 @@
-from . import lenet, wresnet, vgg, resnet, mobilenetv2, shufflenetv2, resnet_tiny, resnet_in
+from . import lenet, wresnet, vgg, resnet, mobilenetv2, shufflenetv2, resnet_tiny, resnet_in, efficientnet
