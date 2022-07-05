@@ -341,7 +341,42 @@ def get_dataset(name: str, data_root: str = 'data', return_transform=False, spli
         data_root = os.path.join(data_root, 'NYUv2')
         train_dst = datafree.datasets.NYUv2(data_root, split='train', transforms=train_transform)
         val_dst = datafree.datasets.NYUv2(data_root, split='test', transforms=val_transform)
+    
+    elif name == 'vials':
+        num_classes = 2
+        input_size = 224
+        train_transform = A.Compose([
+            A.Resize(height=input_size, width=input_size, interpolation=0),
+            A.ToGray(always_apply=False, p=1.0),
+            A.RandomBrightnessContrast(),
+            A.HorizontalFlip(p=0.5),
+            A.VerticalFlip(p=0.5),
+            A.Blur(blur_limit=3),
+            A.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.4, always_apply=False, p=1),
+            A.Rotate(limit=5),
+            A.GaussNoise(always_apply=False, p=0.5, var_limit=(2, 20)),
+            A.ShiftScaleRotate(rotate_limit=5),
+            A.CoarseDropout(always_apply=False, p=0.5, max_holes=8, max_height=8, max_width=8),
+            A.Normalize(**NORMALIZE_DICT[name]),
+            ToTensorV2(),
+        ])
 
+        val_transform = A.Compose([
+            A.Resize(height=input_size, width=input_size, interpolation=0),
+            A.ToGray(always_apply=False, p=1.0),
+            A.Normalize(**NORMALIZE_DICT[name]),
+            ToTensorV2(),
+        ])
+
+        data_root += '/vial'
+
+        # same as DynamicUnetLight (in classification_module.py) but without dataloader and without data validation
+        test_split = 0.35
+        dataset = datafree.datasets.VIALS(data_root, train_transform, val_transform, test_split,
+                                          independent_dataset=independent_dataset)
+        train_dst = dataset.train
+        val_dst = dataset.test
+        
     else:
         raise NotImplementedError
     if return_transform:
