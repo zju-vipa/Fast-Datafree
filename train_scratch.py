@@ -17,9 +17,20 @@ import torch.utils.data.distributed
 import registry
 import datafree
 
+"""
+python DataFree_KD/train_scratch.py --model wrn40_2 --dataset cifar10 --batch-size 8 --lr 0.1 --epoch 2 --gpu 0
+
+python DataFree_KD/train_scratch.py --model efficientnetv4 --dataset vials --batch-size 8 --lr 0.1 --epoch 2 --gpu 0 --data_root data
+
+python DataFree_KD/train_scratch.py --model wrn40_2 --dataset vials --batch-size 8 --lr 0.1 --epoch 2 --gpu 0 --data_root data
+
+"""
+
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 # Basic Settings
-parser.add_argument('--data_root', default='imagenet32')
+parser.add_argument('--data_root', default='./data')
+parser.add_argument('--independent_dataset', default=None)
+parser.add_argument('--baseline_file', default="DataFree_KD")
 parser.add_argument('--model', default='wrn40_2')
 parser.add_argument('--dataset', default='cifar10')
 parser.add_argument('--epochs', default=50, type=int, metavar='N',
