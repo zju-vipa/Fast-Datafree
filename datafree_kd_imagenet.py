@@ -340,7 +340,7 @@ def main_worker(gpu, ngpus_per_node, args):
     #             start_kd=args.start_kd, rand_label=args.rand_label, reset_l0=args.reset_l0,
     #             reset_bn=args.reset_bn, bn_mmt=args.bn_mmt, lr_diff=args.lr_diff)
     if args.method=='fast_meta':
-        assert args.dataset=='imagenet':
+        assert args.dataset=='imagenet'
         nz = 256
         generator = datafree.models.generator.DeepGenerator(nz=nz, ngf=64, img_size=224, nc=3)
         img_size = (3, 224, 224)
