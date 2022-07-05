@@ -1,4 +1,4 @@
-# Fast-Datafree
+# Fast-Datafree (PUBLIC GITHUB)
 
 This repo implements the efficient data-free distillation algorithm from the AAAI-22 paper 
 ["Up to 100x Faster Data-free Knowledge Distillation"](https://arxiv.org/pdf/2112.06253.pdf)
