@@ -303,7 +303,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
 def train(train_loader, model, optimizer, args):
     loss_metric = datafree.metrics.RunningLoss(datafree.criterions.KLDiv(reduction='sum'))
-    acc_metric = datafree.metrics.TopkAccuracy(topk=(1,5))
+    acc_metric = datafree.metrics.TopkAccuracy(topk=(1, 5 if args.dataset != "vials" else 2))
     student, teacher = model
     optimizer = optimizer
     student.train()

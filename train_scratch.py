@@ -86,6 +86,8 @@ parser.add_argument('--seed', default=None, type=int,
                     help='seed for initializing training.')
 
 best_acc1 = 0
+
+
 def main():
     args = parser.parse_args()
     if args.seed is not None:
@@ -136,7 +138,7 @@ def main_worker(gpu, ngpus_per_node, args):
                                 world_size=args.world_size, rank=args.rank)
     if args.fp16:
         from torch.cuda.amp import autocast, GradScaler
-        args.scaler = GradScaler() if args.fp16 else None 
+        args.scaler = GradScaler() if args.fp16 else None
         args.autocast = autocast
     else:
         args.autocast = datafree.utils.dummy_ctx
@@ -144,13 +146,14 @@ def main_worker(gpu, ngpus_per_node, args):
     ############################################
     # Logger
     ############################################
-    log_name = 'R%d-%s-%s'%(args.rank, args.dataset, args.model) if args.multiprocessing_distributed else '%s-%s'%(args.dataset, args.model)
-    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/scratch/log-%s-%s.txt'%(args.dataset, args.model))
-    if args.rank<=0:
-        for k, v in datafree.utils.flatten_dict( vars(args) ).items(): # print args
-            args.logger.info( "%s: %s"%(k,v) )
-    
-    
+    log_name = 'R%d-%s-%s' % (args.rank, args.dataset, args.model) if args.multiprocessing_distributed else '%s-%s' % (
+    args.dataset, args.model)
+    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/scratch/log-%s-%s.txt' % (
+    args.dataset, args.model))
+    if args.rank <= 0:
+        for k, v in datafree.utils.flatten_dict(vars(args)).items():  # print args
+            args.logger.info("%s: %s" % (k, v))
+
     ############################################
     # Setup dataset
     ############################################
@@ -206,8 +209,8 @@ def main_worker(gpu, ngpus_per_node, args):
     ############################################
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
     optimizer = torch.optim.SGD(model.parameters(), args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    milestones = [ int(ms) for ms in args.lr_decay_milestones.split(',') ]
-    scheduler = torch.optim.lr_scheduler.MultiStepLR( optimizer, milestones=milestones, gamma=0.2)
+    milestones = [int(ms) for ms in args.lr_decay_milestones.split(',')]
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=milestones, gamma=0.2)
 
     ############################################
     # Resume
@@ -226,14 +229,15 @@ def main_worker(gpu, ngpus_per_node, args):
                 model.load_state_dict(checkpoint['state_dict'])
             else:
                 model.module.load_state_dict(checkpoint['state_dict'])
-            
+
             best_acc1 = checkpoint['best_acc1']
 
-            try: 
+            try:
                 args.start_epoch = checkpoint['epoch']
                 optimizer.load_state_dict(checkpoint['optimizer'])
                 scheduler.load_state_dict(checkpoint['scheduler'])
-            except: print("Fails to load additional information")
+            except:
+                print("Fails to load additional information")
             print("[!] loaded checkpoint '{}' (epoch {} acc {})"
                   .format(args.resume, checkpoint['epoch'], best_acc1))
         else:
@@ -255,35 +259,36 @@ def main_worker(gpu, ngpus_per_node, args):
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             train_sampler.set_epoch(epoch)
-        args.current_epoch=epoch
+        args.current_epoch = epoch
         train(train_loader, model, criterion, optimizer, args)
         model.eval()
         eval_results = evaluator(model, device=args.gpu)
         (acc1, acc5), val_loss = eval_results['Acc'], eval_results['Loss']
         args.logger.info('[Eval] Epoch={current_epoch} Acc@1={acc1:.4f} Acc@5={acc5:.4f} Loss={loss:.4f} Lr={lr:.4f}'
-                .format(current_epoch=args.current_epoch, acc1=acc1, acc5=acc5, loss=val_loss, lr=optimizer.param_groups[0]['lr']))
+                         .format(current_epoch=args.current_epoch, acc1=acc1, acc5=acc5, loss=val_loss,
+                                 lr=optimizer.param_groups[0]['lr']))
         scheduler.step()
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)
-        _best_ckpt = 'checkpoints/scratch/%s_%s.pth'%(args.dataset, args.model)
+        _best_ckpt = 'checkpoints/scratch/%s_%s.pth' % (args.dataset, args.model)
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
-                and args.rank % ngpus_per_node == 0):
+                                                    and args.rank % ngpus_per_node == 0):
             save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.model,
                 'state_dict': model.state_dict(),
                 'best_acc1': float(best_acc1),
-                'optimizer' : optimizer.state_dict(),
+                'optimizer': optimizer.state_dict(),
                 'scheduler': scheduler.state_dict()
             }, is_best, _best_ckpt)
-    if args.rank<=0:
-        args.logger.info("Best: %.4f"%best_acc1)
+    if args.rank <= 0:
+        args.logger.info("Best: %.4f" % best_acc1)
 
 
 def train(train_loader, model, criterion, optimizer, args):
     global best_acc1
     loss_metric = datafree.metrics.RunningLoss(nn.CrossEntropyLoss(reduction='sum'))
-    acc_metric = datafree.metrics.TopkAccuracy(topk=(1,5))
+    acc_metric = datafree.metrics.TopkAccuracy(topk=(1, 5 if args.dataset != "vials" else 2))
     model.train()
     for i, (images, target) in enumerate(train_loader):
         if args.gpu is not None:
@@ -305,16 +310,24 @@ def train(train_loader, model, criterion, optimizer, args):
         else:
             loss.backward()
             optimizer.step()
-        if args.print_freq>0 and i % args.print_freq == 0:
+        if args.print_freq > 0 and i % args.print_freq == 0:
             (train_acc1, train_acc5), train_loss = acc_metric.get_results(), loss_metric.get_results()
-            args.logger.info('[Train] Epoch={current_epoch} Iter={i}/{total_iters}, train_acc@1={train_acc1:.4f}, train_acc@5={train_acc5:.4f}, train_Loss={train_loss:.4f}, Lr={lr:.4f}'
-              .format(current_epoch=args.current_epoch, i=i, total_iters=len(train_loader), train_acc1=train_acc1, train_acc5=train_acc5, train_loss=train_loss, lr=optimizer.param_groups[0]['lr']))
+            args.logger.info('[Train] Epoch={current_epoch} Iter={i}/{total_iters}, '
+                             'train_acc@1={train_acc1:.4f}, '
+                             'train_acc@5={train_acc5:.4f}, '
+                             'train_Loss={train_loss:.4f}, Lr={lr:.4f}'.format(current_epoch=args.current_epoch, i=i,
+                                                                               total_iters=len(train_loader),
+                                                                               train_acc1=train_acc1,
+                                                                               train_acc5=train_acc5,
+                                                                               train_loss=train_loss,
+                                                                               lr=optimizer.param_groups[0]['lr']))
             loss_metric.reset(), acc_metric.reset()
-            
+
 
 def save_checkpoint(state, is_best, filename='checkpoint.pth'):
     if is_best:
         torch.save(state, filename)
+
 
 if __name__ == '__main__':
     main()
