@@ -1,4 +1,4 @@
-# modify datafree/fast_meta.py:195 to support visualization
+# modify datafree/synthesis/fast_meta.py:195 to support visualization
 import argparse
 from math import gamma
 import os
@@ -31,10 +31,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.cm as cm
 
+
 parser = argparse.ArgumentParser(description='Data-free Knowledge Distillation')
 
 # Data Free
-parser.add_argument('--method', required=True, choices=['zskt', 'dfad', 'dafl', 'deepinv', 'dfq', 'cmi', 'fast', 'fast_meta'])
+parser.add_argument('--method', required=True, choices=['zskt', 'dfad', 'dafl', 'deepinv', 'dfq', 'cmi',
+                                                        'fast', 'fast_meta'])
 parser.add_argument('--adv', default=0, type=float, help='scaling factor for adversarial distillation')
 parser.add_argument('--bn', default=0, type=float, help='scaling factor for BN regularization')
 parser.add_argument('--oh', default=0, type=float, help='scaling factor for one hot loss (cross entropy)')
@@ -46,9 +48,10 @@ parser.add_argument('--cr', default=1, type=float, help='scaling factor for cont
 parser.add_argument('--cr_T', default=0.5, type=float, help='temperature for contrastive model inversion')
 parser.add_argument('--cmi_init', default=None, type=str, help='path to pre-inverted data')
 
-
 # Basic
 parser.add_argument('--data_root', default='./data')
+parser.add_argument('--independent_dataset', type=str, default=None,
+                    help='path of the independent test dataset (None by default)')
 parser.add_argument('--teacher', default='wrn40_2')
 parser.add_argument('--student', default='wrn16_1')
 parser.add_argument('--dataset', default='cifar100')
@@ -56,7 +59,7 @@ parser.add_argument('--lr', default=0.1, type=float,
                     help='initial learning rate for KD')
 parser.add_argument('--lr_decay_milestones', default="120,150,180", type=str,
                     help='milestones for learning rate decay')
-parser.add_argument('--lr_g', default=1e-3, type=float, 
+parser.add_argument('--lr_g', default=1e-3, type=float,
                     help='initial learning rate for generator')
 parser.add_argument('--lr_z', default=1e-3, type=float,
                     help='initial learning rate for latent code')
@@ -64,6 +67,8 @@ parser.add_argument('--T', default=1, type=float)
 
 parser.add_argument('--epochs', default=200, type=int, metavar='N',
                     help='number of total epochs to run')
+parser.add_argument('--split', default=0.35, type=float,
+                    help='ratio of the training dataset that will be used for the test (default : 0.35)')
 parser.add_argument('--g_steps', default=1, type=int, metavar='N',
                     help='number of iterations for generation')
 parser.add_argument('--kd_steps', default=400, type=int, metavar='N',
@@ -96,11 +101,13 @@ parser.add_argument('--synthesis_batch_size', default=None, type=int,
                     help='mini-batch size (default: None) for synthesis, this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
+parser.add_argument('--k', default=5, type=int,
+                    help='number of k nearest neighbors to monitor (default: 5)')
 
 # Device
 parser.add_argument('--gpu', default=0, type=int,
                     help='GPU id to use.')
-# TODO: Distributed and FP-16 training 
+# TODO: Distributed and FP-16 training
 parser.add_argument('--world_size', default=-1, type=int,
                     help='number of nodes for distributed training')
 parser.add_argument('--rank', default=-1, type=int,
@@ -137,6 +144,7 @@ parser.add_argument('--pretrained', dest='pretrained', action='store_true',
 
 best_acc1 = 0
 time_cost = 0
+
 
 def main():
     args = parser.parse_args()
@@ -192,44 +200,54 @@ def main_worker(gpu, ngpus_per_node, args):
                                 world_size=args.world_size, rank=args.rank)
     if args.fp16:
         from torch.cuda.amp import autocast, GradScaler
-        args.scaler = GradScaler() if args.fp16 else None 
+        args.scaler = GradScaler() if args.fp16 else None
         args.autocast = autocast
     else:
         args.autocast = datafree.utils.dummy_ctx
-
 
     ############################################
     # Logger
     ############################################
     if args.log_tag != '':
-        args.log_tag = '-'+args.log_tag
-    log_name = 'R%d-%s-%s-%s%s'%(args.rank, args.dataset, args.teacher, args.student, args.log_tag) if args.multiprocessing_distributed else '%s-%s-%s'%(args.dataset, args.teacher, args.student)
-    args.logger = datafree.utils.logger.get_logger(log_name, output='checkpoints/datafree-%s/log-%s-%s-%s%s.txt'%(args.method, args.dataset, args.teacher, args.student, args.log_tag))
-    if args.rank<=0:
-        for k, v in datafree.utils.flatten_dict( vars(args) ).items(): # print args
-            args.logger.info( "%s: %s"%(k,v) )
+        args.log_tag = '-' + args.log_tag
+    log_name = 'R%d-%s-%s-%s%s' % (args.rank, args.dataset, args.teacher, args.student, args.log_tag
+                                   ) if args.multiprocessing_distributed else '%s-%s-%s' % (args.dataset, args.teacher,
+                                                                                            args.student)
+    args.logger = datafree.utils.logger.get_logger(log_name,
+                                                   output='checkpoints/datafree-%s/log-%s-%s-%s%s.txt' % (args.method,
+                                                                                                          args.dataset,
+                                                                                                          args.teacher,
+                                                                                                          args.student,
+                                                                                                          args.log_tag))
+    if args.rank <= 0:
+        for k, v in datafree.utils.flatten_dict(vars(args)).items():  # print args
+            args.logger.info("%s: %s" % (k, v))
 
     ############################################
     # Setup dataset
     ############################################
-    num_classes, ori_dataset, val_dataset = registry.get_dataset(name=args.dataset, data_root=args.data_root)
+    num_classes, ori_dataset, val_dataset = registry.get_dataset(name=args.dataset, data_root=args.data_root,
+                                                                 test_split=args.split,
+                                                                 independent_dataset=args.independent_dataset)
     val_loader = torch.utils.data.DataLoader(
         val_dataset,
-        batch_size=args.batch_size, shuffle=False,
-        num_workers=args.workers, pin_memory=True)
-    evaluator = datafree.evaluators.classification_evaluator(val_loader)
+        batch_size=args.batch_size,
+        shuffle=False,
+        num_workers=args.workers,
+        pin_memory=True
+    )
+    evaluator = datafree.evaluators.classification_evaluator(val_loader, num_classes, number_k=args.k)
     valData = []
     for datas, labels in val_loader:
         valData.append([datas, labels])
-    
+
     ############################################
     # Output tSNE
     ############################################
     def outputCSV(myModel, metaData, synData, saveEpoch):
 
         aug = transforms.Compose([
-            augmentation.RandomCrop(
-                size=[32, 32], padding=4),
+            augmentation.RandomCrop(size=(32, 32), padding=4),
             augmentation.RandomHorizontalFlip(),
             normalizer,
         ])
@@ -265,11 +283,11 @@ def main_worker(gpu, ngpus_per_node, args):
         x_min, x_max = np.min(tsne, 0), np.max(tsne, 0)
         data = (tsne - x_min) / (x_max - x_min)
 
-        allLabel = np.array([CLASSES[x] for x in allTarget]
-                            ).reshape(data.shape[0], 1)
+        allLabel = np.array([CLASSES[x] for x in allTarget]).reshape(data.shape[0], 1)
 
-        dataType = np.concatenate((np.full((256, 1), 'Meta Data'), np.full((256, 1), 'Synthesis Data'), np.full((256, 1), "Real Data")),
-                                  axis=0)
+        dataType = np.concatenate(
+            (np.full((256, 1), 'Meta Data'), np.full((256, 1), 'Synthesis Data'), np.full((256, 1), "Real Data")),
+            axis=0)
 
         resDataFrame = np.hstack(
             (np.hstack((data, allLabel)), dataType))
@@ -298,7 +316,7 @@ def main_worker(gpu, ngpus_per_node, args):
             os.mkdir(SR_PATH)
         if not os.path.exists(MR_PATH):
             os.mkdir(MR_PATH)
-        pdfName = os.path.splitext(path[nameIndex+1:])[0]
+        pdfName = os.path.splitext(path[nameIndex + 1:])[0]
 
         data_real = DATA[DATA['dataType'] == 'Real Data'].sample(frac=frac)
         colors = cm.tab10(np.linspace(0, 1, len(CLASSES)))
@@ -306,7 +324,7 @@ def main_worker(gpu, ngpus_per_node, args):
         for ffilter, value in OUT_PDF_NAME.items():
 
             data_filter = DATA[(DATA['dataType'] != 'Real Data') & (
-                DATA['dataType'] != ffilter)].sample(frac=frac)
+                    DATA['dataType'] != ffilter)].sample(frac=frac)
 
             data = pd.concat([data_real, data_filter], axis=0)
 
@@ -358,6 +376,7 @@ def main_worker(gpu, ngpus_per_node, args):
         if not torch.cuda.is_available():
             print('using CPU, this will be slow')
             return model
+
         elif args.distributed:
             # For multiprocessing distributed, DistributedDataParallel constructor
             # should always set the single device scope, otherwise,
@@ -372,14 +391,17 @@ def main_worker(gpu, ngpus_per_node, args):
                 args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
                 model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
                 return model
+
             else:
                 model.cuda()
                 model = torch.nn.parallel.DistributedDataParallel(model)
                 return model
+
         elif args.gpu is not None:
             torch.cuda.set_device(args.gpu)
             model = model.cuda(args.gpu)
             return model
+
         else:
             # DataParallel will divide and allocate batch_size to all available GPUs
             model = torch.nn.DataParallel(model).cuda()
@@ -388,7 +410,8 @@ def main_worker(gpu, ngpus_per_node, args):
     student = registry.get_model(args.student, num_classes=num_classes)
     teacher = registry.get_model(args.teacher, num_classes=num_classes, pretrained=True).eval()
     args.normalizer = normalizer = datafree.utils.Normalizer(**registry.NORMALIZE_DICT[args.dataset])
-    teacher.load_state_dict(torch.load('checkpoints/pretrained/%s_%s.pth'%(args.dataset, args.teacher), map_location='cpu')['state_dict'])
+    teacher.load_state_dict(torch.load('checkpoints/pretrained/%s_%s.pth' % (args.dataset, args.teacher),
+                                       map_location='cpu')['state_dict'])
     student = prepare_model(student)
     teacher = prepare_model(teacher)
     criterion = datafree.criterions.KLDiv(T=args.T)
@@ -398,75 +421,84 @@ def main_worker(gpu, ngpus_per_node, args):
     if args.synthesis_batch_size is None:
         args.synthesis_batch_size = args.batch_size
 
-    if args.method=='deepinv':
+    if args.method == 'deepinv':
         synthesizer = datafree.synthesis.DeepInvSyntheiszer(
-                 teacher=teacher, student=student, num_classes=num_classes, 
-                 img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, tv=0.0, l2=0.0,
-                 save_dir=args.save_dir, transform=ori_dataset.transform,
-                 normalizer=args.normalizer, device=args.gpu)
+            teacher=teacher, student=student, num_classes=num_classes,
+            img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
+            synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size,
+            adv=args.adv, bn=args.bn, oh=args.oh, tv=0.0, l2=0.0,
+            save_dir=args.save_dir, transform=ori_dataset.transform,
+            normalizer=args.normalizer, device=args.gpu)
+
     elif args.method in ['zskt', 'dfad', 'dfq', 'dafl']:
-        nz = 512 if args.method=='dafl' else 256
+        nz = 512 if args.method == 'dafl' else 256
         generator = datafree.models.generator.Generator(nz=nz, ngf=64, img_size=32, nc=3)
         generator = prepare_model(generator)
-        criterion = torch.nn.L1Loss() if args.method=='dfad' else datafree.criterions.KLDiv()
+        criterion = torch.nn.L1Loss() if args.method == 'dfad' else datafree.criterions.KLDiv()
         synthesizer = datafree.synthesis.GenerativeSynthesizer(
-                 teacher=teacher, student=teacher, generator=generator, nz=nz, 
-                 img_size=(3, 32, 32), iterations=args.g_steps, lr_g=args.lr_g,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,
-                 normalizer=args.normalizer, device=args.gpu)
-    elif args.method=='cmi':
+            teacher=teacher, student=teacher, generator=generator, nz=nz, img_size=(3, 32, 32), iterations=args.g_steps,
+            lr_g=args.lr_g, synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size,
+            adv=args.adv, bn=args.bn, oh=args.oh, act=args.act, balance=args.balance, criterion=criterion,
+            normalizer=args.normalizer, device=args.gpu)
+
+    elif args.method == 'cmi':
         nz = 256
         generator = datafree.models.generator.Generator(nz=nz, ngf=64, img_size=32, nc=3)
         generator = prepare_model(generator)
-        feature_layers = None # use outputs from all conv layers
-        if args.teacher=='resnet34': # use block outputs
+        feature_layers = None  # use outputs from all conv layers
+        if args.teacher == 'resnet34':  # use block outputs
             feature_layers = [teacher.layer1, teacher.layer2, teacher.layer3, teacher.layer4]
-        synthesizer = datafree.synthesis.CMISynthesizer(teacher, student, generator,
-                 nz=nz, num_classes=num_classes, img_size=(3, 32, 32), feature_reuse=False,
-                 # if feature layers==None, all convolutional layers will be used by CMI.
-                 feature_layers=feature_layers, bank_size=40960, n_neg=4096, head_dim=256, init_dataset=args.cmi_init,
-                 iterations=args.g_steps, lr_g=args.lr_g, progressive_scale=False,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, 
-                 adv=args.adv, bn=args.bn, oh=args.oh, cr=args.cr, cr_T=args.cr_T,
-                 save_dir=args.save_dir, transform=ori_dataset.transform,
-                 normalizer=args.normalizer, device=args.gpu)
-    elif args.method=='fast':
+
+        synthesizer = datafree.synthesis.CMISynthesizer(teacher, student, generator, nz=nz, num_classes=num_classes,
+                                                        img_size=(3, 32, 32), feature_reuse=False,
+                                                        # if feature layers==None,
+                                                        # all convolutional layers will be used by CMI.
+                                                        feature_layers=feature_layers, bank_size=40960, n_neg=4096,
+                                                        head_dim=256, init_dataset=args.cmi_init,
+                                                        iterations=args.g_steps, lr_g=args.lr_g,
+                                                        progressive_scale=False,
+                                                        synthesis_batch_size=args.synthesis_batch_size,
+                                                        sample_batch_size=args.batch_size, adv=args.adv, bn=args.bn,
+                                                        oh=args.oh, cr=args.cr, cr_T=args.cr_T, save_dir=args.save_dir,
+                                                        transform=ori_dataset.transform, normalizer=args.normalizer,
+                                                        device=args.gpu)
+
+    elif args.method == 'fast':
         nz = 256
         generator = datafree.models.generator.Generator(nz=nz, ngf=64, img_size=32, nc=3)
         generator = prepare_model(generator)
-        synthesizer = datafree.synthesis.FastSynthesizer(teacher, student, generator,
-                 nz=nz, num_classes=num_classes, img_size=(3, 32, 32), init_dataset=args.cmi_init,
-                 save_dir=args.save_dir, device=args.gpu,
-                 transform=ori_dataset.transform, normalizer=args.normalizer,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size,
-                 iterations=args.g_steps, warmup=args.warmup, lr_g=args.lr_g, lr_z=args.lr_z,
-                 adv=args.adv, bn=args.bn, oh=args.oh,
-                 reset_l0=args.reset_l0, reset_bn=args.reset_bn,
-                 bn_mmt=args.bn_mmt, is_maml=args.is_maml)
-    elif args.method=='fast_meta':
+        synthesizer = datafree.synthesis.FastSynthesizer(teacher, student, generator, nz=nz, num_classes=num_classes,
+                                                         img_size=(3, 32, 32), init_dataset=args.cmi_init,
+                                                         save_dir=args.save_dir, device=args.gpu,
+                                                         transform=ori_dataset.transform, normalizer=args.normalizer,
+                                                         synthesis_batch_size=args.synthesis_batch_size,
+                                                         sample_batch_size=args.batch_size, iterations=args.g_steps,
+                                                         warmup=args.warmup, lr_g=args.lr_g, lr_z=args.lr_z,
+                                                         adv=args.adv, bn=args.bn, oh=args.oh, reset_l0=args.reset_l0,
+                                                         reset_bn=args.reset_bn, bn_mmt=args.bn_mmt,
+                                                         is_maml=args.is_maml)
+
+    elif args.method == 'fast_meta':
         nz = 256
         generator = datafree.models.generator.Generator(nz=nz, ngf=64, img_size=32, nc=3)
         generator = prepare_model(generator)
-        synthesizer = datafree.synthesis.FastMetaSynthesizer(teacher, student, generator,
-                 nz=nz, num_classes=num_classes, img_size=(3, 32, 32),
-                 init_dataset=args.cmi_init, iterations=args.g_steps, lr_g=args.lr_g,
-                 synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size,
-                 adv=args.adv, bn=args.bn, oh=args.oh,
-                 save_dir=args.save_dir, transform=ori_dataset.transform,
-                 normalizer=args.normalizer, device=args.gpu, lr_z=args.lr_z,
-                 warmup=args.warmup, reset_l0=args.reset_l0,
-                 reset_bn=args.reset_bn, bn_mmt=args.bn_mmt, is_maml=args.is_maml)
-    else: raise NotImplementedError
-        
+        synthesizer = datafree.synthesis.FastMetaSynthesizer(
+            teacher, student, generator, nz=nz, num_classes=num_classes, img_size=(3, 32, 32),
+            init_dataset=args.cmi_init, iterations=args.g_steps, lr_g=args.lr_g,
+            synthesis_batch_size=args.synthesis_batch_size, sample_batch_size=args.batch_size, adv=args.adv, bn=args.bn,
+            oh=args.oh, save_dir=args.save_dir, transform=ori_dataset.transform, normalizer=args.normalizer,
+            device=args.gpu, lr_z=args.lr_z, warmup=args.warmup, reset_l0=args.reset_l0, reset_bn=args.reset_bn,
+            bn_mmt=args.bn_mmt, is_maml=args.is_maml)
+
+    else:
+        raise NotImplementedError
+
     ############################################
     # Setup optimizer
     ############################################
     optimizer = torch.optim.SGD(student.parameters(), args.lr, weight_decay=args.weight_decay, momentum=0.9)
-    milestones = [ int(ms) for ms in args.lr_decay_milestones.split(',') ]
-    scheduler = torch.optim.lr_scheduler.MultiStepLR( optimizer, milestones=milestones, gamma=0.1)
+    milestones = [int(ms) for ms in args.lr_decay_milestones.split(',')]
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=milestones, gamma=0.1)
 
     ############################################
     # Resume
@@ -477,25 +509,31 @@ def main_worker(gpu, ngpus_per_node, args):
             print("=> loading checkpoint '{}'".format(args.resume))
             if args.gpu is None:
                 checkpoint = torch.load(args.resume, map_location='cpu')
+
             else:
                 loc = 'cuda:{}'.format(args.gpu)
                 checkpoint = torch.load(args.resume, map_location=loc)
 
             if isinstance(student, nn.Module):
                 student.load_state_dict(checkpoint['state_dict'])
+
             else:
                 student.module.load_state_dict(checkpoint['state_dict'])
+
             best_acc1 = checkpoint['best_acc1']
-            try: 
+            try:
                 args.start_epoch = checkpoint['epoch']
                 optimizer.load_state_dict(checkpoint['optimizer'])
                 scheduler.load_state_dict(checkpoint['scheduler'])
-            except: print("Fails to load additional model information")
-            print("[!] loaded checkpoint '{}' (epoch {} acc {})"
-                  .format(args.resume, checkpoint['epoch'], best_acc1))
+
+            except:
+                print("Fails to load additional model information")
+
+            print("[!] loaded checkpoint '{}' (epoch {} acc {})".format(args.resume, checkpoint['epoch'], best_acc1))
+
         else:
             print("[!] no checkpoint found at '{}'".format(args.resume))
-        
+
     ############################################
     # Evaluate
     ############################################
@@ -509,53 +547,59 @@ def main_worker(gpu, ngpus_per_node, args):
     # Train Loop
     ############################################
     for epoch in range(args.start_epoch, args.epochs):
-        #if args.distributed:
+        # if args.distributed:
         #    train_sampler.set_epoch(epoch)
-        args.current_epoch=epoch
-        for _ in range( args.ep_steps//args.kd_steps ): # total kd_steps < ep_steps
+        args.current_epoch = epoch
+        for _ in range(args.ep_steps // args.kd_steps):  # total kd_steps < ep_steps
             # 1. Data synthesis
-            vis_results, meta = synthesizer.synthesize() # g_steps
+            vis_results, meta = synthesizer.synthesize()  # g_steps
             # time_cost += cost
             # 2. Knowledge distillation
             if epoch >= args.warmup:
-                train( synthesizer, [student, teacher], criterion, optimizer, args) # # kd_steps
+                train(synthesizer, [student, teacher], criterion, optimizer, args, num_classes)  # kd_steps
+
         for vis_name, vis_image in vis_results.items():
-            datafree.utils.save_image_batch( vis_image, 'checkpoints/datafree-%s/%s%s.png'%(args.method, vis_name, args.log_tag) )
+            datafree.utils.save_image_batch(vis_image, 'checkpoints/datafree-%s/%s%s.png' % (args.method, vis_name,
+                                                                                             args.log_tag))
+
         for meta_name, meta_image in meta.items():
-            datafree.utils.save_image_batch( meta_image, 'checkpoints/datafree-%s/%s%s.png' %(args.method, meta_name, args.log_tag) )
-        if (epoch+1) % 5 == 0 or epoch == 0:
-            saveCSV = outputCSV(teacher, next(iter(meta.values())), next(
-                iter(vis_results.values())), epoch)
+            datafree.utils.save_image_batch(meta_image, 'checkpoints/datafree-%s/%s%s.png' % (args.method, meta_name,
+                                                                                              args.log_tag))
+
+        if (epoch + 1) % 5 == 0 or epoch == 0:
+            saveCSV = outputCSV(teacher, next(iter(meta.values())), next(iter(vis_results.values())), epoch)
             drawPDF(saveCSV, 0.75)
-        
+
         student.eval()
         eval_results = evaluator(student, device=args.gpu)
         (acc1, acc5), val_loss = eval_results['Acc'], eval_results['Loss']
-        args.logger.info('[Eval] Epoch={current_epoch} Acc@1={acc1:.4f} Acc@5={acc5:.4f} Loss={loss:.4f} Lr={lr:.4f}'
-                .format(current_epoch=args.current_epoch, acc1=acc1, acc5=acc5, loss=val_loss, lr=optimizer.param_groups[0]['lr']))
+        args.logger.info('[Train_Eval] Epoch={current_epoch} Acc@1={acc1:.4f} Acc@{k}={acc5:.4f} Loss={loss:.4f} '
+                         'Lr={lr:.4f}'.format(current_epoch=args.current_epoch, acc1=acc1, k=args.k, acc5=acc5,
+                                              loss=val_loss, lr=optimizer.param_groups[0]['lr']))
         scheduler.step()
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)
-        _best_ckpt = 'checkpoints/datafree-%s/%s-%s-%s.pth'%(args.method, args.dataset, args.teacher, args.student)
-        if not args.multiprocessing_distributed or (args.multiprocessing_distributed
-                and args.rank % ngpus_per_node == 0):
+        _best_ckpt = 'checkpoints/datafree-%s/%s-%s-%s.pth' % (args.method, args.dataset, args.teacher, args.student)
+        if not args.multiprocessing_distributed or (
+                args.multiprocessing_distributed and args.rank % ngpus_per_node == 0):
             save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.student,
                 'state_dict': student.state_dict(),
                 'best_acc1': float(best_acc1),
-                'optimizer' : optimizer.state_dict(),
+                'optimizer': optimizer.state_dict(),
                 'scheduler': scheduler.state_dict(),
             }, is_best, _best_ckpt)
-    if args.rank<=0:
-        args.logger.info("Best: %.4f"%best_acc1)
-        args.logger.info("Generation Cost: %1.3f" % (time_cost/3600.) )
+
+    if args.rank <= 0:
+        args.logger.info("Best: %.4f" % best_acc1)
+        args.logger.info("Generation Cost: %1.3f" % (time_cost / 3600.))
 
 
-def train(synthesizer, model, criterion, optimizer, args):
+def train(synthesizer, model, criterion, optimizer, args, num_classes):
     global time_cost
     loss_metric = datafree.metrics.RunningLoss(datafree.criterions.KLDiv(reduction='sum'))
-    acc_metric = datafree.metrics.TopkAccuracy(topk=(1, 5 if args.dataset != "vials" else 2))
+    acc_metric = datafree.metrics.TopkAccuracy(topk=(1, args.k), num_classes=num_classes)
     student, teacher = model
     optimizer = optimizer
     student.train()
@@ -567,38 +611,41 @@ def train(synthesizer, model, criterion, optimizer, args):
         # time_cost += (end - start)
         if args.gpu is not None:
             images = images.cuda(args.gpu, non_blocking=True)
+
         with args.autocast():
             with torch.no_grad():
                 t_out, t_feat = teacher(images, return_features=True)
+
             s_out = student(images.detach())
             loss_s = criterion(s_out, t_out.detach())
+
         optimizer.zero_grad()
         if args.fp16:
             scaler_s = args.scaler_s
             scaler_s.scale(loss_s).backward()
             scaler_s.step(optimizer)
             scaler_s.update()
+
         else:
             loss_s.backward()
             optimizer.step()
+
         acc_metric.update(s_out, t_out.max(1)[1])
         loss_metric.update(s_out, t_out)
-        if args.print_freq == -1 and i % 10 == 0 and args.current_epoch >= 150:
+        if (args.print_freq == -1 and i % 10 == 0 and args.current_epoch >= 150) or (args.print_freq > 0 and i % args.print_freq == 0):
             (train_acc1, train_acc5), train_loss = acc_metric.get_results(), loss_metric.get_results()
-            args.logger.info(
-                '[Train] Epoch={current_epoch} Iter={i}/{total_iters}, train_acc@1={train_acc1:.4f}, train_acc@5={train_acc5:.4f}, train_Loss={train_loss:.4f}, Lr={lr:.4f}'
-                .format(current_epoch=args.current_epoch, i=i, total_iters=args.kd_steps, train_acc1=train_acc1,
-                        train_acc5=train_acc5, train_loss=train_loss, lr=optimizer.param_groups[0]['lr']))
+            args.logger.info('[Train] Epoch={current_epoch} Iter={i}/{total_iters}, train_acc@1={train_acc1:.4f}, '
+                             'train_acc@{k}={train_acc5:.4f}, train_Loss={train_loss:.4f}, '
+                             'Lr={lr:.4f}'.format(current_epoch=args.current_epoch, i=i, total_iters=args.kd_steps,
+                                                  train_acc1=train_acc1, k=args.k, train_acc5=train_acc5,
+                                                  train_loss=train_loss, lr=optimizer.param_groups[0]['lr']))
             loss_metric.reset(), acc_metric.reset()
-        elif args.print_freq>0 and i % args.print_freq == 0:
-            (train_acc1, train_acc5), train_loss = acc_metric.get_results(), loss_metric.get_results()
-            args.logger.info('[Train] Epoch={current_epoch} Iter={i}/{total_iters}, train_acc@1={train_acc1:.4f}, train_acc@5={train_acc5:.4f}, train_Loss={train_loss:.4f}, Lr={lr:.4f}'
-              .format(current_epoch=args.current_epoch, i=i, total_iters=args.kd_steps, train_acc1=train_acc1, train_acc5=train_acc5, train_loss=train_loss, lr=optimizer.param_groups[0]['lr']))
-            loss_metric.reset(), acc_metric.reset()
-    
+
+
 def save_checkpoint(state, is_best, filename='checkpoint.pth'):
     if is_best:
         torch.save(state, filename)
+
 
 if __name__ == '__main__':
     main()

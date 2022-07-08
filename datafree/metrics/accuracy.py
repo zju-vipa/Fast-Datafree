@@ -24,22 +24,17 @@ class Accuracy(Metric):
 
 
 class TopkAccuracy(Metric):
-    def __init__(self, topk=(1, 2)):
-        self._topk = topk
+    def __init__(self, topk=(1, 5), num_classes=10):
+        self._topk = (1, topk[1] if num_classes >= topk[1] else num_classes)
         self.reset()
 
     @torch.no_grad()
     def update(self, outputs, targets):
         for k in self._topk:
-            """
-            if k > outputs.shape[1]:
-              print(k)
-              # to correct the 'selected index k out of range' error that appears when you have less than 5 classes
-              break
-            """
             _, topk_outputs = outputs.topk(k, dim=1, largest=True, sorted=True)
             correct = topk_outputs.eq(targets.view(-1, 1).expand_as(topk_outputs))
             self._correct[k] += correct[:, :k].view(-1).float().sum(0).item()
+
         self._cnt += len(targets)
 
     def get_results(self):
