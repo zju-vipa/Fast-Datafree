@@ -1,7 +1,8 @@
 from tqdm import tqdm
-import torch.nn.functional as F 
+import torch.nn.functional as F
 import torch
 from . import metrics
+
 
 class Evaluator(object):
     def __init__(self, metric, dataloader):
@@ -11,14 +12,16 @@ class Evaluator(object):
     def eval(self, model, device=None, progress=False):
         self.metric.reset()
         with torch.no_grad():
-            for i, (inputs, targets) in enumerate( tqdm(self.dataloader, disable=not progress) ):
+            for i, (inputs, targets) in enumerate(tqdm(self.dataloader, disable=not progress)):
                 inputs, targets = inputs.cuda(), targets.cuda()
-                outputs = model( inputs )
+                outputs = model(inputs)
                 self.metric.update(outputs, targets)
+
         return self.metric.get_results()
-    
+
     def __call__(self, *args, **kwargs):
         return self.eval(*args, **kwargs)
+
 
 class AdvEvaluator(object):
     def __init__(self, metric, dataloader, adversary):
@@ -28,30 +31,35 @@ class AdvEvaluator(object):
 
     def eval(self, model, device=None, progress=False):
         self.metric.reset()
-        for i, (inputs, targets) in enumerate( tqdm(self.dataloader, disable=not progress) ):
+        for i, (inputs, targets) in enumerate(tqdm(self.dataloader, disable=not progress)):
             inputs, targets = inputs.cuda(), targets.cuda()
             inputs = self.adversary.perturb(inputs, targets)
             with torch.no_grad():
-                outputs = model( inputs )
+                outputs = model(inputs)
                 self.metric.update(outputs, targets)
+
         return self.metric.get_results()
-    
+
     def __call__(self, *args, **kwargs):
         return self.eval(*args, **kwargs)
 
-def classification_evaluator(dataloader):
-    metric = metrics.MetricCompose({
-        'Acc': metrics.TopkAccuracy(),
-        'Loss': metrics.RunningLoss(torch.nn.CrossEntropyLoss(reduction='sum'))
-    })
-    return Evaluator( metric, dataloader=dataloader)
 
-def advarsarial_classification_evaluator(dataloader, adversary):
+def classification_evaluator(dataloader, num_classes, number_k):
     metric = metrics.MetricCompose({
-        'Acc': metrics.TopkAccuracy(),
+        'Acc': metrics.TopkAccuracy(num_classes=num_classes, topk=(1, number_k)),
         'Loss': metrics.RunningLoss(torch.nn.CrossEntropyLoss(reduction='sum'))
     })
-    return AdvEvaluator( metric, dataloader=dataloader, adversary=adversary)
+
+    return Evaluator(metric, dataloader=dataloader)
+
+
+def advarsarial_classification_evaluator(dataloader, adversary, num_classes, number_k):
+    metric = metrics.MetricCompose({
+        'Acc': metrics.TopkAccuracy(num_classes=num_classes, topk=(1, number_k)),
+        'Loss': metrics.RunningLoss(torch.nn.CrossEntropyLoss(reduction='sum'))
+    })
+
+    return AdvEvaluator(metric, dataloader=dataloader, adversary=adversary)
 
 
 def segmentation_evaluator(dataloader, num_classes, ignore_idx=255):
@@ -61,4 +69,5 @@ def segmentation_evaluator(dataloader, num_classes, ignore_idx=255):
         'Acc': metrics.Accuracy(),
         'Loss': metrics.RunningLoss(torch.nn.CrossEntropyLoss(reduction='sum'))
     })
-    return Evaluator( metric, dataloader=dataloader)
+
+    return Evaluator(metric, dataloader=dataloader)

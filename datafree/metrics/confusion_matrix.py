@@ -2,6 +2,7 @@ from .stream_metrics import Metric
 import torch
 from typing import Callable
 
+
 class ConfusionMatrix(Metric):
     def __init__(self, num_classes, ignore_idx=None):
         super(ConfusionMatrix, self).__init__()
@@ -30,6 +31,7 @@ class ConfusionMatrix(Metric):
         self._cnt = 0
         self.confusion_matrix = torch.zeros(self._num_classes, self._num_classes, dtype=torch.int64, requires_grad=False)
 
+
 class IoU(Metric):
     def __init__(self, confusion_matrix: ConfusionMatrix):
         self._confusion_matrix = confusion_matrix
@@ -44,6 +46,7 @@ class IoU(Metric):
         cm = self._confusion_matrix.get_results()
         iou = cm.diag() / (cm.sum(dim=1) + cm.sum(dim=0) - cm.diag() + 1e-9)
         return iou
+
 
 class mIoU(IoU):
     def get_results(self):

@@ -5,6 +5,7 @@ from PIL import Image
 import os, random, math
 from copy import deepcopy
 from contextlib import contextmanager
+import albumentations as A
 
 def get_pseudo_label(n_or_label, num_classes, device, onehot=False):
     if isinstance(n_or_label, int):
@@ -196,7 +197,8 @@ class UnlabeledImageDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         img = Image.open( self.images[idx] )
         if self.transform:
-            img = self.transform(img)
+            img = self.transform(image=np.array(img))["image"] if isinstance(self.transform,
+                                                                             A.Compose) else self.transform(img)
         return img
 
     def __len__(self):
@@ -222,7 +224,8 @@ class LabeledImageDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         img, target = Image.open( self.images[idx] ), self.targets[idx]
         if self.transform:
-            img = self.transform(img)
+            img = self.transform(image=np.array(img))["image"] if isinstance(self.transform,
+                                                                             A.Compose) else self.transform(img)
         return img, target
     def __len__(self):
         return len(self.images)
