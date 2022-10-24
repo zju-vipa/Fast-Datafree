@@ -110,13 +110,14 @@ You can register your models and datasets in registry.py by modifying `NORMALIZ_
 ## Bibtex
 If you found this work useful for your research, please cite our paper:
 ```
-@misc{fang2021contrastive,
-      title={Up to 100x Faster Data-free Knowledge Distillation}, 
-      author={Gongfan Fang and Kanya Mo and Xinchao Wang and Jie Song and Shitao Bei and Haofei Zhang and Mingli Song},
-      year={2022},
-      eprint={2112.06253},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI}
+@inproceedings{fang2022up,
+  title={Up to 100x faster data-free knowledge distillation},
+  author={Fang, Gongfan and Mo, Kanya and Wang, Xinchao and Song, Jie and Bei, Shitao and Zhang, Haofei and Song, Mingli},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={36},
+  number={6},
+  pages={6597--6604},
+  year={2022}
 }
 ```
 
